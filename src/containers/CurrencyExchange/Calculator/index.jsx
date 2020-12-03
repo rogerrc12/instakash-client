@@ -91,7 +91,7 @@ const Calculator = (props) => {
   return (
     <div className={classes.Calculator}>
       <Formik
-        initialValues={currencyExchangeValues(prices.buying, solesId, dolaresId, props.comisiones.compra, exchangeRateId)}
+        initialValues={currencyExchangeValues(prices.buying, solesId, dolaresId, exchangeRateId)}
         validationSchema={validateCurrencyExchange}
         innerRef={formRef}
         enableReinitialize

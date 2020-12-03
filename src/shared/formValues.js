@@ -44,7 +44,7 @@ export const accountValues = (values, isThird) => ({
   isThird,
 });
 
-export const currencyExchangeValues = (buying, currencyReceive, currencySend, comision, exchangeRateId) => ({
+export const currencyExchangeValues = (buying, currencyReceive, currencySend, exchangeRateId) => ({
   sending: 1000,
   receiving: 1000 * buying,
   idCurrencyToReceive: currencyReceive,
@@ -57,7 +57,6 @@ export const currencyExchangeValues = (buying, currencyReceive, currencySend, co
   bankToSend: "",
   rate: buying,
   acceptFunds: false,
-  comision,
   originFunds: "",
   destinationFunds: "",
 });

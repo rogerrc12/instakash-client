@@ -14,10 +14,9 @@ function* getPrices() {
     const res = yield axios.get("/cambiodivisa/conversion");
     const prices = { buying: Number(res.data.compra), selling: Number(res.data.venta) };
     const limits = { soles: +res.data.limite[0].limite, dolares: +res.data.limite[1].limite };
-    const comisiones = { venta: +res.data.comisionVenta, compra: +res.data.comisionCompra };
     const exchangeId = res.data.idHistoricalTransaccion;
 
-    yield put(actions.getPrices(prices, limits, comisiones, exchangeId));
+    yield put(actions.getPrices(prices, limits, exchangeId));
   } catch (error) {
     yield call(() =>
       openNotification("error", "Ha ocurrido un error obteniendo las tasas de compra/venta. Por faovr, intenta más tarde. Si el problema persiste contacta a soporte.")
@@ -29,11 +28,11 @@ function* getPrices() {
 function* createExchange(action) {
   const userId = yield call(utilSagas.getUserId);
 
-  const { condition, comision, sending, receiving } = action.values;
+  const { condition, sending, receiving } = action.values;
 
   const newExchange = {
     IdBankAccount: action.values.bankToReceive,
-    TaxPercent: condition === "buying" ? receiving * (comision * 100) : sending * (comision * 100),
+    TaxPercent: condition === "buying" ? receiving : sending,
     amountSell: sending,
     amountReceive: receiving,
     UserId: userId,

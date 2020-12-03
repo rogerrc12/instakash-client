@@ -2,7 +2,6 @@ import * as actionTypes from "../actionTypes";
 const initialState = {
   prices: { buying: 0.0, selling: 0.0 },
   limits: { soles: 0.0, dolares: 0.0 },
-  comisiones: { venta: 0, compra: 0 },
   exchangeRateId: null,
   isLoading: false,
   newExchange: {},
@@ -22,7 +21,6 @@ export default function (state = initialState, action) {
         ...state,
         prices: action.prices,
         limits: action.limits,
-        comisiones: action.comisiones,
         exchangeRateId: action.exchangeId,
         isLoading: false,
       };
