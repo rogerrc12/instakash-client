@@ -1,0 +1,368 @@
+@import "../../assets/css/variables.scss";
+
+.CashAdvanceWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+
+  > img {
+    display: none;
+  }
+
+  @media #{$min-desktop} {
+    background-color: $light-gray;
+    border-radius: 15px;
+    align-items: center;
+    padding: 16px 26px;
+    min-height: 35rem;
+  }
+
+  @media screen and (min-width: 1024px) {
+    > img {
+      display: block;
+      max-width: 19rem;
+    }
+  }
+
+  @media screen and (min-width: 1440px) {
+    > img {
+      max-width: 30rem;
+    }
+  }
+}
+
+.CashFormWrapper {
+  background-color: $light-gray;
+  padding: 20px;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 25rem;
+
+  h2 {
+    font-size: 1.4rem;
+    line-height: 1.4;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  @media #{$min-desktop} {
+    max-width: 27rem;
+    padding-left: 0;
+
+    h2 {
+      font-size: 1.6rem;
+      text-align: left;
+    }
+  }
+}
+
+.ActionWrapper {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  justify-content: space-around;
+
+  svg {
+    font-size: 2.5rem;
+    color: $base-green;
+    font-weight: bold;
+  }
+
+  p {
+    font-size: 0.7rem;
+  }
+
+  & > div {
+    flex: 0.55;
+  }
+
+  button,
+  a {
+    flex: 0.45;
+    background-color: $base-green;
+    color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    max-width: 9rem;
+    margin-left: 0;
+    font-weight: bold;
+    transition: 250ms ease-out;
+    border: 1px solid transparent;
+    text-align: center;
+
+    &:first-of-type:not(.Unique) {
+      background-color: transparent;
+      color: $base-green;
+      border-color: $base-green;
+
+      &:hover,
+      &:focus,
+      &:active {
+        color: #fff;
+        background-color: $base-green;
+      }
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: darken($color: $base-green, $amount: 3);
+      color: #fff;
+    }
+  }
+
+  @media #{$min-desktop} {
+    & > div {
+      flex: 0.65;
+    }
+
+    p {
+      font-size: 0.75rem;
+    }
+
+    button {
+      flex: 0.35;
+    }
+  }
+}
+
+.AccountList {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+
+  > p {
+    font-size: 0.85rem;
+    margin-top: 15px;
+    text-align: center;
+    background-color: #c7e8e1;
+    padding: 15px;
+    border-radius: 10px;
+  }
+
+  button {
+    color: $base-green;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-top: 10px;
+
+    span {
+      font-size: 1.2rem;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: darken($color: $base-green, $amount: 3);
+    }
+  }
+}
+
+.Account {
+  width: 100%;
+  min-height: 30px;
+  border-radius: 10px;
+  background-color: white;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 15px;
+  cursor: pointer;
+  transition: 250ms ease-out;
+
+  &:hover,
+  &:focus {
+    box-shadow: 2px 5px 12px rgba(0, 0, 0, 0.05);
+  }
+
+  img {
+    display: block;
+    margin-right: 15px;
+    max-width: 30px;
+  }
+
+  span {
+    color: $base-green;
+    margin-left: auto;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+}
+
+.AccountInfo {
+  h4 {
+    color: $base-green;
+    font-weight: bold;
+    font-size: 0.9rem;
+  }
+
+  p {
+    text-transform: uppercase;
+    font-size: 0.85rem;
+  }
+}
+
+.PaymentType {
+  padding: 18px 10px !important;
+
+  p {
+    font-weight: bold;
+  }
+
+  svg {
+    font-size: 1.7rem;
+    color: $dark-green;
+    margin-right: 15px;
+  }
+}
+
+.PaymentTypeInfo {
+  h4 {
+    color: $base-green;
+    font-weight: bold;
+    font-size: 0.9rem;
+  }
+
+  p {
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    text-transform: none;
+  }
+}
+
+.Active {
+  background-color: $base-green;
+
+  h4,
+  span,
+  p {
+    color: #fff;
+  }
+
+  &:hover,
+  &:focus {
+    background-color: $base-green;
+  }
+}
+
+.PrevButton {
+  margin-left: 0 !important;
+}
+
+.Warning {
+  color: $base-green;
+  display: flex;
+  align-items: center;
+  font-size: 0.85rem;
+  font-weight: bold;
+  margin-left: 10px;
+
+  svg {
+    margin-right: 10px;
+  }
+}
+
+.Details {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 10px 20px;
+  margin: 10px 0;
+  box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.02);
+
+  > div {
+    margin: 13px 0;
+  }
+
+  img {
+    max-width: 20px;
+  }
+
+  h3,
+  button {
+    color: $base-green;
+    font-weight: bold;
+  }
+
+  button {
+    padding: 0;
+  }
+}
+
+.Details {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 10px 20px;
+  margin: 10px 0;
+  box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.02);
+
+  > div {
+    margin: 13px 0;
+  }
+
+  img {
+    max-width: 20px;
+  }
+
+  h3,
+  button {
+    color: $base-green;
+    font-weight: bold;
+  }
+
+  button {
+    padding: 0;
+  }
+}
+
+.TransferWrapper {
+  display: flex;
+  align-items: center;
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.05);
+  background-color: transparent;
+  margin: 15px 0;
+
+  input {
+    flex: 0.7;
+    padding: 15px;
+    border-radius: 10px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    background-color: #fff;
+  }
+
+  button {
+    flex: 0.3;
+    background-color: $base-green;
+    color: #fff;
+    font-weight: bold;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    padding: 15px;
+    transition: 250ms ease-in-out;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: darken($color: $base-green, $amount: 5);
+    }
+  }
+}
+
+.TransferInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  p {
+    flex: 0.8;
+  }
+
+  svg {
+    flex: 0.2;
+    display: inline-block;
+    font-size: 1.6rem;
+    color: $base-green;
+  }
+}

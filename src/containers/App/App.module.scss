@@ -1,0 +1,74 @@
+@import "../../assets/css/variables.scss";
+
+.App {
+  width: 100%;
+  max-width: 1880px;
+  height: 100%;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 4rem 1fr auto;
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
+  background-color: $light-gray;
+  margin: 0 auto;
+
+  header,
+  main {
+    background-color: #fff;
+  }
+
+  header {
+    grid-area: header;
+  }
+
+  main {
+    grid-area: main;
+    overflow: auto;
+    padding: 15px 10px 20px 10px;
+  }
+
+  footer {
+    grid-area: footer;
+  }
+
+  @media #{$min-desktop} {
+    display: grid;
+    grid-template-columns: 17rem 1fr;
+    grid-template-rows: 6rem 1fr;
+    grid-template-areas:
+      "menu header"
+      "menu main";
+    margin-bottom: 0;
+
+    nav {
+      grid-area: menu;
+    }
+
+    main {
+      margin-bottom: 0;
+      padding: 20px 40px;
+    }
+
+    footer {
+      grid-area: none;
+      display: none;
+    }
+  }
+}
+
+.Question {
+  font-size: 0.9rem;
+  position: fixed;
+  bottom: 85px;
+  left: 10px;
+
+  @media #{$min-desktop} {
+    bottom: 20px;
+    right: 25px;
+    left: auto;
+    font-size: 1.2rem;
+  }
+}

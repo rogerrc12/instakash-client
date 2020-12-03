@@ -1,0 +1,106 @@
+@import "../../assets/css/variables.scss";
+
+.Welcome {
+  padding: 1rem;
+
+  @media #{$min-desktop} {
+    padding: 0 3rem 0 1rem;
+  }
+}
+
+.WelcomeWrapper {
+  min-height: 35rem;
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+
+  h2 {
+    color: $base-green;
+    font-size: 1.8rem;
+    margin: 15px 0 0;
+  }
+
+  > p {
+    font-size: 1rem;
+    margin-bottom: 15px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  @media #{$min-desktop} {
+    background-image: url("../../assets/images/bg/green-bg-top.svg"), linear-gradient(to right, $dark-green, $base-green);
+    background-position: center;
+    background-size: cover;
+    color: #fff;
+    align-items: flex-start;
+    padding: 25px;
+
+    h2 {
+      color: #fff;
+      text-align: left;
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    > p {
+      text-align: left;
+      font-weight: normal;
+      margin-top: 0;
+      margin-bottom: 30px;
+      text-align: left;
+      font-size: 1rem;
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    padding: 50px;
+
+    h4 {
+      font-size: 1.35rem;
+    }
+
+    p {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+.CardsWrapper {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 35px;
+  width: 90%;
+  max-width: 30rem;
+  margin: 0 auto;
+
+  a {
+    display: block;
+    width: 100%;
+  }
+
+  @media #{$min-desktop} {
+    flex-flow: row;
+    justify-content: flex-start;
+    margin-top: auto;
+    flex-wrap: wrap;
+    margin: 0;
+    margin-top: auto;
+    width: auto;
+    max-width: 100%;
+
+    a {
+      margin-right: 1.5rem;
+      margin-bottom: 15px;
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    flex-wrap: nowrap;
+
+    a {
+      margin-bottom: 0;
+    }
+  }
+}

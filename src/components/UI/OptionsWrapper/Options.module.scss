@@ -1,0 +1,58 @@
+@import "../../../assets/css/variables.scss";
+
+.Container {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  img {
+    max-width: 9rem;
+    margin-bottom: 7px;
+  }
+
+  svg {
+    color: $base-green;
+    font-size: 2.2rem;
+  }
+
+  h4 {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1rem;
+  }
+}
+
+.StepsWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px 0;
+
+  li {
+    margin: 7px 0;
+
+    &:first-of-type {
+      font-weight: bold;
+    }
+  }
+
+  a {
+    color: $base-green;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: underline;
+
+    &:hover,
+    &:focus {
+      color: darken($color: $base-green, $amount: 5);
+    }
+  }
+
+  p {
+    width: 100%;
+  }
+
+  img {
+    width: 100%;
+  }
+}

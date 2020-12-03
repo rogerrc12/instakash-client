@@ -1,0 +1,73 @@
+@import "../../../assets/css/variables.scss";
+
+.Toggler {
+  button {
+    color: #9fa2a1;
+
+    &:focus {
+      outline: 0;
+    }
+  }
+}
+
+.Active {
+  color: $base-green !important;
+}
+
+.Bar {
+  width: 100%;
+  height: 4px;
+  margin-top: 1rem;
+  background-color: rgba(0, 0, 0, 0.2);
+  position: relative;
+
+  &:before {
+    content: "";
+    width: 50%;
+    display: block;
+    position: absolute;
+    height: 4px;
+    left: 0;
+    background-color: $base-green;
+    transition: 400ms ease-in-out;
+  }
+}
+
+.BarRight:before {
+  transform: translateX(100%);
+}
+
+.Form {
+  button svg {
+    color: #000 !important;
+  }
+
+  position: relative;
+}
+
+.Error {
+  color: $base-error !important;
+}
+
+.StepForm {
+  width: 100%;
+}
+
+.Continue {
+  background-color: $base-yellow;
+}
+
+.RegistrationError {
+  padding: 8px;
+  border-radius: 10px;
+  background-color: lighten($color: $base-error, $amount: 20);
+  font-size: 0.8rem !important;
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+
+  svg {
+    font-size: 1.2rem;
+    color: #000;
+  }
+}

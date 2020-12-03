@@ -1,0 +1,13 @@
+@import "../../../assets/css/variables.scss";
+
+.Copy {
+  color: $base-green;
+  text-transform: uppercase;
+  padding-bottom: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  text-align: right;
+  margin-left: 10px;
+  font-size: 12px;
+  text-decoration: underline;
+}

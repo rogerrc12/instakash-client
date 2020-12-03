@@ -1,0 +1,95 @@
+@import "../../assets/css/variables.scss";
+
+.Dashboard {
+  padding: 1rem;
+
+  @media #{$min-desktop} {
+    padding: 0 3rem 0 1rem;
+  }
+}
+
+.DetailsModal {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+
+  h4 {
+    color: #999;
+  }
+
+  p {
+    color: #444;
+  }
+
+  @media #{$min-desktop} {
+    height: 100vh !important;
+    background-color: $light-gray !important;
+    right: 0;
+    top: 0;
+    left: auto !important;
+    min-height: 100% !important;
+    max-width: 26rem !important;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+  }
+}
+
+.ActivityDetails {
+  background-color: #fff;
+
+  @media #{$min-desktop} {
+    padding: 1rem;
+    border-radius: 0.5rem;
+  }
+}
+
+.DownloadButton {
+  background-color: $base-green;
+  color: #fff;
+  font-weight: bold;
+}
+
+.TransferWrapper {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  margin: 15px 0;
+
+  input {
+    flex: 0.7;
+    padding: 15px;
+    border-radius: 10px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    background-color: #fff;
+    border: 1px solid rgb(209, 209, 209);
+    border-right: none;
+  }
+
+  button {
+    flex: 0.3;
+    background-color: $base-green;
+    color: #fff;
+    font-weight: bold;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    padding: 15px;
+    transition: 250ms ease-in-out;
+    border: 1px solid $base-green;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: darken($color: $base-green, $amount: 5);
+    }
+  }
+}
+
+.DetailsForm h4 {
+  color: #000;
+}
+
+.ErrorMessage {
+  border: 1px solid #e53e3e !important;
+  border-right: none !important;
+}

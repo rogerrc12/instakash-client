@@ -1,0 +1,48 @@
+@import "../../../assets//css/variables.scss";
+
+.AccountList {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  max-height: 250px;
+  overflow-y: scroll;
+
+  > p {
+    font-size: 0.85rem;
+    margin-top: 15px;
+    text-align: center;
+    background-color: #c7e8e1;
+    padding: 10px 20px;
+    border-radius: 10px;
+  }
+
+  button {
+    color: $base-green;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-top: 10px;
+
+    span {
+      font-size: 1.1rem;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: darken($color: $base-green, $amount: 3);
+    }
+  }
+}
+
+.AccountInfo {
+  h4 {
+    color: $base-green;
+    font-weight: bold;
+    font-size: 0.9rem;
+  }
+
+  p {
+    text-transform: uppercase;
+    font-size: 0.85rem;
+  }
+}

@@ -1,0 +1,69 @@
+@import "../../assets/css/variables.scss";
+
+.Navigation {
+  position: fixed;
+  overflow-y: scroll;
+  height: 100vh;
+  width: 60%;
+  background-color: $light-gray;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+  transition: 550ms ease-in-out;
+  transform: translateX(-100%);
+  top: 0;
+  left: 0;
+
+  @media #{$min-desktop} {
+    transform: translateX(0);
+    position: static;
+    width: 100%;
+    overflow-y: hidden;
+    z-index: 0;
+  }
+}
+
+.Opened {
+  transform: translateX(0);
+}
+
+.Logo {
+  max-width: 8rem;
+}
+
+.NavItem a {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0.4rem 0 0.4rem 1.3rem;
+  width: 100%;
+  max-width: 13rem;
+  margin: 0.75rem auto;
+  border-radius: 15px;
+  transition: 250ms ease-out;
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: lighten($color: #000000, $amount: 65%);
+
+  @media #{$min-desktop} {
+    font-size: 0.9rem;
+  }
+
+  &.Active {
+    background-color: #c7e8e1;
+    color: #000;
+  }
+
+  svg {
+    color: $base-green;
+    font-size: 1.1rem;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: #c7e8e1;
+  }
+}

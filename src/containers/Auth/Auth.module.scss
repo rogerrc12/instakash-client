@@ -1,0 +1,147 @@
+@import "../../assets/css//variables.scss";
+
+.Auth {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+
+  @media #{$min-desktop} {
+    flex-flow: row;
+  }
+}
+
+.SplashScreen {
+  min-height: 100vh;
+  width: 100%;
+  // background-image: url("../../assets/images/bg/earth-bg.jpg");
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-blend-mode: color;
+
+  h1 {
+    color: #fff;
+    font-size: 2rem;
+    line-height: 1.3;
+    position: relative;
+
+    span:after {
+      content: "";
+      width: 10.5rem;
+      display: inline-block;
+      position: absolute;
+      left: 0;
+      top: 58%;
+      height: 6px;
+      background-color: $base-yellow;
+    }
+  }
+
+  @media #{$min-desktop} {
+    width: 50%;
+    background-position: center, center;
+  }
+}
+
+.SplashContent {
+  top: 7rem;
+
+  h1 {
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  }
+
+  @media #{$min-desktop} {
+    display: none;
+  }
+}
+
+.ActionWrapper {
+  display: flex;
+  align-items: flex-start;
+  flex-flow: column;
+
+  button {
+    width: 100%;
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding-top: 1.1rem;
+    padding-bottom: 1.1rem;
+
+    &:first-of-type {
+      background-color: $base-yellow;
+    }
+
+    &:last-of-type {
+      margin-top: 1rem;
+      color: #fff;
+      border: 1px solid #fff;
+    }
+  }
+}
+
+.AuthWrapper {
+  background-color: $light-gray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: auto;
+  z-index: 999;
+  overflow-y: scroll;
+  min-height: 100vh;
+
+  h2 {
+    font-size: 1.3rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  p button,
+  p a {
+    color: $base-green;
+    text-decoration: underline;
+  }
+
+  svg {
+    color: $base-green;
+    font-size: 1rem;
+    z-index: 10;
+  }
+
+  @media #{$min-desktop} {
+    position: relative;
+    width: 50%;
+    overflow-y: scroll;
+    height: 100vh;
+  }
+}
+
+.AuthForm {
+  width: 95%;
+  margin: 0 auto;
+  max-width: 21.5rem;
+  margin-top: 2rem;
+
+  button[type="submit"] {
+    background-color: $base-yellow;
+    font-weight: 600;
+  }
+
+  @media #{$min-desktop} {
+    margin-top: 1rem;
+
+    ::placeholder {
+      font-size: 0.9rem;
+    }
+  }
+
+  a {
+    color: $base-green;
+  }
+}

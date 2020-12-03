@@ -1,0 +1,60 @@
+@import "../../../../assets/css/variables.scss";
+
+.FloatedLabel {
+  width: 100%;
+  height: 50px;
+  position: relative;
+
+  input,
+  select {
+    width: 100%;
+    height: 100%;
+    padding: 0.5rem 1rem 0 0.7rem;
+    border: 1px solid #c7e8e1;
+    border-radius: 5px;
+    font-size: 0.8rem;
+
+    &:focus + label span {
+      transform: translateY(-15px);
+      color: $base-green;
+      font-size: 0.6rem;
+    }
+  }
+
+  label {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: block;
+    pointer-events: none;
+
+    span {
+      position: absolute;
+      bottom: 15px;
+      left: 12px;
+      font-size: 0.75rem;
+      color: lighten($color: #000000, $amount: 60%);
+      transition: 350ms ease-out;
+    }
+  }
+}
+
+.TouchedLabel label span {
+  transform: translateY(-15px);
+  color: $base-green;
+  font-size: 0.6rem;
+}
+
+.Error {
+  border-color: $base-error !important;
+
+  + label span {
+    color: $base-error !important;
+  }
+}
+
+.IconSelect {
+  height: 100%;
+}

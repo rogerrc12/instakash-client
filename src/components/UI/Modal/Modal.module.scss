@@ -1,0 +1,39 @@
+@import "../../../assets/css/variables.scss";
+
+.Modal {
+  width: 100%;
+  height: 100%;
+  max-height: 33rem;
+  bottom: 0;
+  position: fixed;
+  z-index: 999;
+  background-color: #fff;
+  overflow-y: scroll;
+  border-top-left-radius: 1.5rem;
+  border-top-right-radius: 1.5rem;
+  padding: 1.25rem 2rem;
+
+  h2,
+  legend {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0.5rem 0;
+  }
+
+  @media #{$min-desktop} {
+    max-width: 35rem;
+    border-radius: 1.5rem;
+    bottom: 5rem;
+    left: 35%;
+  }
+}
+
+.Close {
+  position: absolute;
+  right: -10px;
+  top: -5px;
+  background-color: $base-green;
+  padding: 0.5rem;
+  color: #fff;
+  z-index: 100;
+}

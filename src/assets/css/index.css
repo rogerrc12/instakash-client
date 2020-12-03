@@ -1,0 +1,243 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700&display=swap");
+
+body {
+  font-family: "Manrope", sans-serif;
+  font-family: 14px;
+}
+
+/* CUSTOM CLASSES */
+.input-password svg {
+  color: #2b3431;
+  font-size: 1.3rem;
+}
+
+button:disabled {
+  opacity: 0.7;
+  filter: grayscale(0.5);
+  cursor: not-allowed;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #777;
+}
+
+#root {
+  height: 100%;
+}
+
+/* ANT CUSTOM CSS */
+
+.ant-collapse {
+  background-color: transparent;
+  border: none;
+}
+
+.ant-collapse > .ant-collapse-item {
+  border: 2px solid #c7e8e1;
+  border-radius: 1rem !important;
+  padding: 0.3rem;
+  margin: 0.7rem 0;
+  transition: 250ms ease-out;
+}
+
+.ant-collapse-content {
+  border-top: 0;
+}
+
+.ant-collapse-item.ant-collapse-item-active {
+  border-color: #02c39a;
+}
+
+.ant-collapse-item.ant-collapse-item-active .ant-collapse-header {
+  color: #02c39a;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+/* HIDE SCROLL BAR */
+.disable-scrollbars::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* Chrome/Safari/Webkit */
+}
+
+.disable-scrollbars {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+
+/* FORMS */
+
+.submit-button {
+  background-color: #02c39a;
+  color: #fff;
+}
+
+/* CUSTOM BUTTON CLASSES */
+.success-btn {
+  background-color: #78dcc6;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+}
+
+.danger-btn {
+  background-color: #f56565;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+}
+
+/* SWEETALERT */
+.sweetalert {
+  border-radius: 1.5rem !important;
+}
+
+/* ANT TABLES */
+thead.ant-table-thead tr {
+  margin-bottom: 1rem;
+}
+
+thead.ant-table-thead th {
+  background-color: #c7e8e1;
+}
+
+tr.ant-table-row.ant-table-row-level-0 {
+  cursor: pointer;
+  position: relative;
+}
+
+/* ANT ACTIVITY TABS */
+.activity-tabs .ant-tabs-nav-list {
+  background-color: #f0f5f4;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.15);
+}
+
+.activity-tabs .ant-tabs-nav {
+  margin-bottom: 0 !important;
+}
+
+.activity-tabs .ant-tabs-tab {
+  padding: 0.7rem;
+  margin: 0.3rem;
+  border-radius: 0.5rem;
+  transition: 250ms ease-in-out;
+}
+
+.activity-tabs .ant-tabs-tab:first-of-type {
+  margin-right: 0;
+}
+
+.activity-tabs .ant-tabs-tab.ant-tabs-tab-active {
+  background-color: #02c39a;
+}
+
+.activity-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: #fff;
+}
+
+.activity-tabs .ant-tabs-tab:hover {
+  color: #02c39a;
+}
+
+.activity-tabs .ant-tabs-ink-bar.ant-tabs-ink-bar-animated {
+  display: none;
+}
+
+.activity-tabs .ant-tabs > .ant-tabs-nav .ant-tabs-nav-wrap,
+.activity-tabs .ant-tabs > div > .ant-tabs-nav .ant-tabs-nav-wrap {
+  justify-content: center;
+}
+
+@media screen and (min-width: 767px) {
+  .activity-tabs .ant-tabs > .ant-tabs-nav .ant-tabs-nav-wrap,
+  .activity-tabs .ant-tabs > div > .ant-tabs-nav .ant-tabs-nav-wrap {
+    justify-content: flex-start;
+  }
+}
+
+.grecaptcha-badge {
+  display: none !important;
+}
+
+/* CUSTOM CLASSES ANTD NOTIFICATION */
+.ant-notification {
+  margin-right: 20px;
+}
+
+.ant-notification-hook-holder,
+.ant-notification-notice {
+  max-width: 350px;
+}
+
+@media screen and (min-width: 767px) {
+  .ant-notification {
+    margin-right: 50px;
+  }
+
+  .ant-notification-hook-holder,
+  .ant-notification-notice {
+    width: 420px;
+    max-width: calc(100vw - 25px);
+  }
+}
+
+.ant-notification-notice {
+  padding: 15px 30px 15px 15px;
+}
+
+.ant-notification-notice-message {
+  display: none;
+}
+
+.ant-notification-notice-description {
+  max-width: 240px;
+  font-size: 13px !important;
+}
+
+@media screen and (min-width: 768px) {
+  .ant-notification-notice-description {
+    max-width: 320px;
+  }
+}
+
+.ant-notification-notice-with-icon {
+  display: flex;
+  align-items: center;
+}
+
+.ant-notification-notice-with-icon svg {
+  font-size: 1.8rem;
+}
+
+.ant-error {
+  background-color: #eec6c6;
+}
+
+.ant-success {
+  background-color: #cceee6;
+}
+
+.swal-text {
+  text-align: center;
+  line-height: 1.6;
+}
+
+.error-msg,
+.alert-msg {
+  color: #f56565;
+  display: block;
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+.error-msg a,
+.alert-msg a {
+  text-decoration: underline;
+}
+
+.alert-msg {
+  color: #f0ad4e;
+}

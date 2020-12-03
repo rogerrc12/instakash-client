@@ -1,0 +1,255 @@
+@import "../../assets/css/variables.scss";
+
+.CurrencyExchange {
+  .ExchangeImg {
+    display: none;
+    margin-left: auto;
+  }
+
+  @media screen and (min-width: 1024px) {
+    padding: 0 2rem 0 1.5rem;
+
+    .ExchangeImg {
+      width: 19rem;
+      display: block;
+    }
+  }
+
+  @media screen and (min-width: 1440px) {
+    .ExchangeImg {
+      width: 30rem;
+    }
+  }
+}
+
+.CurrencyExchangeWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+
+  @media #{$min-desktop} {
+    background-color: $light-gray;
+    border-radius: 15px;
+    align-items: center;
+    padding: 16px 26px;
+    min-height: 40rem;
+    justify-content: flex-start;
+    flex-flow: row;
+  }
+}
+
+.PricesWrapper {
+  display: flex;
+  justify-content: center;
+  margin: 15px 0;
+}
+
+.CalculatorWrapper {
+  background-color: $light-gray;
+  padding: 20px;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 23rem;
+
+  h2 {
+    font-size: 1.4rem;
+    line-height: 1.4;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  @media #{$min-desktop} {
+    max-width: 25rem;
+    padding-left: 0;
+
+    h2 {
+      font-size: 1.6rem;
+      text-align: left;
+    }
+  }
+}
+
+.Calculator {
+  position: relative;
+}
+
+.ActionWrapper {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  justify-content: space-between;
+
+  svg {
+    font-size: 1.8rem;
+    color: $base-green;
+    font-weight: bold;
+  }
+
+  p {
+    font-size: 0.7rem;
+  }
+
+  & > div {
+    flex: 0.6;
+  }
+
+  button,
+  a {
+    flex: 0.4;
+    background-color: $base-green;
+    color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    max-width: 9rem;
+    margin-left: auto;
+    font-weight: bold;
+    transition: 250ms ease-out;
+    border: 1px solid transparent;
+    text-align: center;
+
+    &:first-of-type:not(.Unique) {
+      background-color: transparent;
+      color: $base-green;
+      border-color: $base-green;
+      margin-left: 0;
+
+      &:hover,
+      &:focus,
+      &:active {
+        color: #fff;
+        background-color: $base-green;
+      }
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: darken($color: $base-green, $amount: 3);
+      color: #fff;
+    }
+  }
+
+  @media #{$min-desktop} {
+    & > div {
+      flex: 0.6;
+    }
+
+    p {
+      font-size: 0.85rem;
+    }
+
+    button {
+      flex: 0.4;
+    }
+  }
+}
+
+.PrevButton {
+  margin-left: 0 !important;
+}
+
+.Details {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 10px 20px;
+  margin: 10px 0;
+  box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.02);
+
+  > div {
+    margin: 13px 0;
+  }
+
+  img {
+    max-width: 20px;
+  }
+
+  h3,
+  button {
+    color: $base-green;
+    font-weight: bold;
+  }
+
+  button {
+    padding: 0;
+  }
+}
+
+.TransferWrapper {
+  display: flex;
+  align-items: center;
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.05);
+  background-color: transparent;
+  margin: 15px 0;
+
+  input {
+    flex: 0.7;
+    padding: 15px;
+    border-radius: 10px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    background-color: #fff;
+  }
+
+  button {
+    flex: 0.3;
+    background-color: $base-green;
+    color: #fff;
+    font-weight: bold;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    padding: 15px;
+    transition: 250ms ease-in-out;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: darken($color: $base-green, $amount: 5);
+    }
+  }
+}
+
+.Warning {
+  color: $base-error;
+  display: flex;
+  align-items: center;
+  font-size: 0.85rem;
+  font-weight: bold;
+  margin-left: 10px;
+
+  svg {
+    margin-right: 10px;
+  }
+}
+
+small.Warning {
+  font-size: 0.8rem;
+  color: $base-green;
+}
+
+.TransferInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  p {
+    flex: 0.8;
+  }
+
+  svg {
+    flex: 0.2;
+    display: inline-block;
+    font-size: 1.6rem;
+    color: $base-green;
+  }
+}
+
+.Copy {
+  color: $base-green;
+  text-transform: uppercase;
+  padding-bottom: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  text-align: right;
+  display: block;
+}

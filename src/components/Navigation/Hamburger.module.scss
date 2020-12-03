@@ -1,0 +1,40 @@
+@import "../../assets/css/variables.scss";
+
+.Hamburger {
+  width: 1.5rem;
+  height: 2rem;
+  background-color: transparent;
+  border: none;
+
+  span {
+    width: 100%;
+    height: 3px;
+    background-color: #fff;
+    position: relative;
+    display: block;
+    border-radius: 5px;
+
+    &:before,
+    &:after {
+      content: "";
+      background-color: #fff;
+      position: absolute;
+      width: 100%;
+      height: 3px;
+      display: block;
+      border-radius: 5px;
+    }
+
+    &:before {
+      top: -8px;
+    }
+
+    &:after {
+      top: 8px;
+    }
+  }
+
+  @media #{$min-desktop} {
+    display: none;
+  }
+}

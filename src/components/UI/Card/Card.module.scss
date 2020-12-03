@@ -1,0 +1,159 @@
+@import "../../../assets/css/variables.scss";
+
+.CardDesc {
+  width: 50%;
+
+  @media #{$min-desktop} {
+    width: 90%;
+    order: 2;
+
+    h4 {
+      font-size: 1.1rem;
+    }
+
+    p {
+      font-size: 0.75rem;
+    }
+  }
+}
+
+.ServiceCard {
+  background-color: $light-green;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 11.6rem;
+  width: 100%;
+  position: relative;
+  margin-bottom: 16px;
+  cursor: pointer;
+  transition: 350ms ease-in-out;
+  color: #000;
+
+  &:focus,
+  &:hover,
+  &:active {
+    transform: scale(1.02);
+    box-shadow: 0px 3px 10px rgba(107, 187, 167, 0.7);
+  }
+
+  h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  p {
+    line-height: 1.2;
+  }
+
+  img {
+    width: 100%;
+    max-width: 12rem;
+    right: 5px;
+    top: 15px;
+    position: absolute;
+  }
+
+  @media #{$min-desktop} {
+    height: 16rem;
+    max-width: 18rem;
+    min-width: 16rem;
+    flex-flow: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    margin-bottom: 0;
+
+    h4 {
+      font-size: 1.1rem;
+    }
+
+    img {
+      max-width: 12rem;
+      order: 1;
+      top: 10px;
+      right: 25px;
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    height: 19rem;
+    max-width: 22rem;
+    min-width: 18.5rem;
+
+    h4 {
+      font-size: 1.35rem;
+    }
+
+    img {
+      max-width: 16.5rem;
+      right: 7px;
+    }
+  }
+}
+
+.PublicityCard {
+  background-color: #c7e8e1;
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: center;
+  max-width: 13.5rem;
+  height: 18.5rem;
+  position: relative;
+
+  .Arrow {
+    display: inline-block;
+    position: absolute;
+    top: -10px;
+    left: 45%;
+    right: auto;
+  }
+
+  h4 {
+    font-size: 0.85rem;
+    font-weight: bold;
+    margin: 0.5rem 0;
+    text-transform: uppercase;
+  }
+
+  p {
+    margin-bottom: 1rem;
+    color: #000;
+  }
+
+  ul {
+    padding-left: 13px;
+  }
+
+  li {
+    font-size: 0.74rem;
+  }
+
+  p {
+    font-size: 0.7rem;
+  }
+
+  img {
+    max-width: 2.5rem;
+    display: inline-block;
+    position: relative;
+    top: 20px;
+  }
+
+  @media #{$min-desktop} {
+    img {
+      max-width: 3.5rem;
+    }
+  }
+}
+
+.Arrow {
+  display: none;
+
+  @media #{$min-desktop} {
+    position: absolute;
+    display: inline-block;
+    right: 15px;
+  }
+}

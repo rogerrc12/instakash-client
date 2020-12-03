@@ -1,0 +1,93 @@
+@import "../../assets/css/variables.scss";
+
+.Profile {
+  padding: 1rem;
+
+  @media #{$min-desktop} {
+    padding: 1rem 3rem 0 1.5rem;
+  }
+}
+
+.Details {
+  padding: 1.5rem;
+
+  @media #{$min-desktop} {
+    background-color: $light-gray;
+    border-radius: 15px;
+  }
+
+  h2 {
+    display: none;
+  }
+}
+
+.ProfileInfoWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-flow: wrap;
+  margin-bottom: 0.5rem;
+  min-width: 9rem;
+
+  h4 {
+    color: #aaa;
+  }
+
+  p {
+    color: #000;
+  }
+
+  @media #{$min-desktop} {
+    flex-flow: column;
+    justify-content: flex-start;
+    margin-left: 1.5rem;
+
+    h4 {
+      color: $base-green;
+      font-size: 0.8rem;
+    }
+
+    p {
+      font-size: 0.9rem;
+    }
+  }
+}
+
+.ProfileInfo {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: flex-start;
+  font-weight: bold;
+  margin-bottom: 3rem;
+
+  @media #{$min-desktop} {
+    flex-flow: row;
+  }
+
+  h4 {
+    font-size: 1.1rem;
+  }
+
+  p {
+    color: $base-green;
+    font-size: 0.8rem;
+  }
+}
+
+.FormChange {
+  width: 100%;
+  margin-top: 0.5rem;
+
+  button {
+    margin-left: auto;
+    background-color: $base-green;
+    color: #fff;
+    font-weight: bold;
+    margin-top: 1rem;
+  }
+
+  @media #{$min-desktop} {
+    max-width: 15.5rem;
+  }
+}

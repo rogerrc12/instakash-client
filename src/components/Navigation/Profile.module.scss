@@ -1,0 +1,81 @@
+@import "../../assets/css/variables.scss";
+
+.Profile {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  p {
+    display: none;
+  }
+
+  @media #{$min-desktop} {
+    p {
+      display: inline-block;
+    }
+
+    .ProfileIcon {
+      display: none;
+    }
+  }
+}
+
+.ProfileIcon svg {
+  font-size: 1.3rem;
+}
+
+.Arrow {
+  font-size: 0.7rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: 350ms ease-out;
+
+  @media #{$min-desktop} {
+    font-size: 0.9rem;
+    color: $dark-green;
+    background-color: $light-green;
+    border-radius: 50%;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: darken($color: $light-green, $amount: 15);
+    }
+  }
+}
+
+.ProfileNav {
+  position: absolute;
+  top: 65px;
+  width: 175px;
+  background-color: #fff;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+  right: -30px;
+  transform: translateX(-30%);
+  z-index: 100;
+
+  a,
+  button {
+    width: 100%;
+    padding: 10px;
+    transition: 250ms ease-in-out;
+    color: #000;
+
+    &:hover,
+    &:focus {
+      color: inherit;
+      background-color: darken($color: #fff, $amount: 6);
+    }
+
+    svg {
+      color: $base-green;
+    }
+  }
+
+  @media #{$min-desktop} {
+    right: 0;
+    top: 80px;
+  }
+}

@@ -1,0 +1,18 @@
+@import "../../assets/css/variables.scss";
+
+.ButtonsWrapper button {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.Continue {
+  background-color: $base-yellow;
+}
+
+.Previous {
+  background-color: $button-green;
+}
+
+.Checkbox small {
+  font-size: 0.8rem;
+}

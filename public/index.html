@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="./images/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0" />
+    <meta name="theme-color" content="#02c39a" />
+    <meta name="description" content="Aplicación financiera digital Instakash." />
+    <link rel="apple-touch-icon" href="./images/logo.png" />
+    <link rel="manifest" href="./manifest.json" />
+    <title>Instakash | Tu solución financiera digital</title>
+  </head>
+  <body>
+    <noscript>Debes tener activado Javascript para poder usar esta app.</noscript>
+    <div id="root"></div>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("./serviceWorker.js")
+            .then((reg) => console.log("success: " + reg.scope))
+            .catch((err) => console.log("Failed serviceWorker: " + err));
+        });
+      }
+    </script>
+  </body>
+</html>
