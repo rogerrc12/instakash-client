@@ -90,9 +90,10 @@
   }
 
   @media #{$min-desktop} {
-    flex: 0.15;
+    flex: 0.05;
     height: 35rem;
-    position: relative;
+    margin-bottom: 0;
+    left: 13px;
 
     ul {
       flex-flow: column;
@@ -180,8 +181,12 @@
 .CurrencySteps {
   &:after,
   &:before {
-    width: 195px !important;
-    left: 10px !important;
+    width: 185px !important;
+    left: 70px !important;
+
+    @media #{$min-desktop} {
+      left: 10px !important;
+    }
   }
 
   &:before {

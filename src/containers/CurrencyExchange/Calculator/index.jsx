@@ -79,13 +79,13 @@ const Calculator = (props) => {
   useEffect(() => {
     let timer;
 
-    if (step < 3) {
-      timer = setTimeout(() => logout(), 300000);
-    }
+    // if (step < 3) {
+    //   timer = setTimeout(() => logout(), 300000);
+    // }
 
-    return () => {
-      clearTimeout(timer);
-    };
+    // return () => {
+    //   clearTimeout(timer);
+    // };
   }, [newExchange, goStep, step, logout]);
 
   return (

@@ -35,25 +35,23 @@ const CurrencyExchange = (props) => {
   return (
     <>
       <main className={classes.CurrencyExchange}>
-        <div className={classes.CurrencyExchangeWrapper}>
+        <div className={classes.CalculatorWrapper}>
           {step < 3 ? <Steps step={step} /> : null}
-          <div className={classes.CalculatorWrapper}>
-            <Calculator
-              accounts={accounts}
-              step={step}
-              goNext={setNextStep}
-              goBack={setPrevStep}
-              goStep={goStepHandler}
-              prices={prices}
-              limits={limits}
-              comisiones={comisiones}
-              newExchange={newExchange}
-              processed={processed}
-              modalType={modalType}
-              setModalType={setModalType}
-              exchangeRateId={exchangeRateId}
-            />
-          </div>
+          <Calculator
+            accounts={accounts}
+            step={step}
+            goNext={setNextStep}
+            goBack={setPrevStep}
+            goStep={goStepHandler}
+            prices={prices}
+            limits={limits}
+            comisiones={comisiones}
+            newExchange={newExchange}
+            processed={processed}
+            modalType={modalType}
+            setModalType={setModalType}
+            exchangeRateId={exchangeRateId}
+          />
         </div>
       </main>
       <Modal animationClassName='slide-up-down'>
