@@ -54,7 +54,7 @@ const CurrencyExchange = (props) => {
               exchangeRateId={exchangeRateId}
             />
           </div>
-          <img src={step === 4 ? ExchangeSuccess : ExchangeSteps} className={classes.ExchangeImg} alt='cambio de divisas' />
+          <p>Aqui va una imagen</p>
         </div>
       </main>
       <Modal animationClassName='slide-up-down'>
