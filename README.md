@@ -1,8 +1,4 @@
-Plataforma financiera digital Instakash
-
-## Available Scripts
-
-In the project directory, you can run:
+### Plataforma financiera digital Instakash
 
 ### `yarn start`
 
