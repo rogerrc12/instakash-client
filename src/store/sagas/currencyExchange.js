@@ -28,11 +28,10 @@ function* getPrices() {
 function* createExchange(action) {
   const userId = yield call(utilSagas.getUserId);
 
-  const { condition, sending, receiving } = action.values;
+  const { sending, receiving } = action.values;
 
   const newExchange = {
     IdBankAccount: action.values.bankToReceive,
-    TaxPercent: condition === "buying" ? receiving : sending,
     amountSell: sending,
     amountReceive: receiving,
     UserId: userId,
