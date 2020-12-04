@@ -27,7 +27,7 @@ const CurrencyExchange = (props) => {
   const goStepHandler = (step) => setStep(step);
 
   const accounts = useSelector((state) => state.accounts);
-  const { prices, limits, comisiones, newExchange, processed, exchangeRateId } = useSelector((state) => state.currencyExchange);
+  const { prices, limits, newExchange, processed, exchangeRateId } = useSelector((state) => state.currencyExchange);
 
   const user = useSelector((state) => state.auth.user);
   if (!user.phoneNumber || (user.rucNumber && !user.address)) return <Redirect exact from={props.match.url} to='/mi-perfil' />;

@@ -4,11 +4,10 @@ export const getPricesInit = () => ({
   type: actionTypes.GET_EXCHANGE_PRICES_INIT,
 });
 
-export const getPrices = (prices, limits, comisiones, exchangeId) => ({
+export const getPrices = (prices, limits, exchangeId) => ({
   type: actionTypes.GET_EXCHANGE_PRICES_SUCCESS,
   prices,
   limits,
-  comisiones,
   exchangeId,
 });
 
