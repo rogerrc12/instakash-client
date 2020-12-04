@@ -1,27 +1,5 @@
 @import "../../assets/css/variables.scss";
 
-.CurrencyExchange {
-  .ExchangeImg {
-    display: none;
-    margin-left: auto;
-  }
-
-  @media screen and (min-width: 1024px) {
-    padding: 0 2rem 0 1.5rem;
-
-    .ExchangeImg {
-      width: 19rem;
-      display: block;
-    }
-  }
-
-  @media screen and (min-width: 1440px) {
-    .ExchangeImg {
-      width: 30rem;
-    }
-  }
-}
-
 .CurrencyExchangeWrapper {
   display: flex;
   justify-content: center;
@@ -86,7 +64,7 @@
       right: 0px;
       bottom: 0px;
       left: 0px;
-      opacity: 0.5;
+      opacity: 0.25;
     }
   }
 }

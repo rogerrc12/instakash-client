@@ -2,9 +2,9 @@
 
 .CashAdvanceWrapper {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  flex-wrap: wrap;
+  flex-flow: column;
+  align-items: center;
+  position: relative;
 
   > img {
     display: none;
@@ -16,18 +16,21 @@
     align-items: center;
     padding: 16px 26px;
     min-height: 35rem;
+    flex-flow: row;
   }
 
-  @media screen and (min-width: 1024px) {
-    > img {
-      display: block;
-      max-width: 19rem;
-    }
-  }
-
-  @media screen and (min-width: 1440px) {
-    > img {
-      max-width: 30rem;
+  @media screen and (min-width: 1140px) {
+    &:before {
+      background: url(../../assets/images/illustrations/advance-steps.svg) no-repeat;
+      background-size: 40%;
+      background-position: 80% 50%;
+      content: "";
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+      opacity: 0.25;
     }
   }
 }

@@ -30,15 +30,12 @@ const CashAdvance = (props) => {
 
   return (
     <>
-      <main className={classes.CashAdvance}>
+      <main>
         <div className={classes.CashAdvanceWrapper}>
-          <div className='flex items-center flex-col md:flex-row w-full lg:w-1/2'>
-            {step < 4 ? <Steps step={step} type='cash-advance' /> : null}
-            <div className={classes.CashFormWrapper}>
-              <CashForm step={step} accounts={accounts} goNext={setNextStep} goBack={setPrevStep} goStep={goStepHandler} />
-            </div>
+          {step < 4 ? <Steps step={step} type='cash-advance' /> : null}
+          <div className={classes.CashFormWrapper}>
+            <CashForm step={step} accounts={accounts} goNext={setNextStep} goBack={setPrevStep} goStep={goStepHandler} />
           </div>
-          <img src={AdvanceSteps} alt='Avance de Efectivo' />
         </div>
       </main>
       <Modal animationClassName='slide-up-down'>

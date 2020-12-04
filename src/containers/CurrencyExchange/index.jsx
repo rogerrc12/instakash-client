@@ -34,7 +34,7 @@ const CurrencyExchange = (props) => {
 
   return (
     <>
-      <main className={classes.CurrencyExchange}>
+      <main>
         <div className={classes.CalculatorWrapper}>
           {step < 3 ? <Steps step={step} /> : null}
           <Calculator
@@ -45,7 +45,6 @@ const CurrencyExchange = (props) => {
             goStep={goStepHandler}
             prices={prices}
             limits={limits}
-            comisiones={comisiones}
             newExchange={newExchange}
             processed={processed}
             modalType={modalType}
