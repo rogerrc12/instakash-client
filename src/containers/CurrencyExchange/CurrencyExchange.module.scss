@@ -57,7 +57,7 @@
     &:before {
       background: url(../../assets/images/illustrations/currency-steps.svg) no-repeat;
       background-size: 45%;
-      background-position: 80% 50%;
+      background-position: 97% 50%;
       content: "";
       position: absolute;
       top: 0px;
@@ -72,7 +72,11 @@
 .Calculator {
   position: relative;
   width: 100%;
-  max-width: 23rem;
+  max-width: 19rem;
+
+  @media screen and (min-width: 1400px) {
+    max-width: 23rem;
+  }
 }
 
 .ActionWrapper {

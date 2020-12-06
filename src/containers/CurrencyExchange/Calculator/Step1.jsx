@@ -59,9 +59,7 @@ const Step1 = (props) => {
         <Input label='Envias' name='sending' {...props} disabled={!selling && !buying} />
         <Field
           name='condition'
-          component={({ form }) => (
-            <Swipe condition={props.condition} disabled={!selling && !buying} change={() => changeCurrencies(props.condition, form.setFieldValue)} />
-          )}
+          component={({ form }) => <Swipe condition={props.condition} disabled={!selling && !buying} change={() => changeCurrencies(props.condition, form.setFieldValue)} />}
         />
         <Input label='Recibes' name='receiving' {...props} disabled={!selling && !buying} />
         {props.errors.receiving && (
@@ -69,22 +67,15 @@ const Step1 = (props) => {
             <TiWarning /> {props.errors.receiving}
           </p>
         )}
-        <p className='alert-msg mt-4'>* Solo se aceptan transferencias bancarias.</p>
-        <div className={classes.ActionWrapper}>
-          <Limits>
-            <p>
-              ¿Monto mayor a <br /> <strong>5.000 $</strong> o <strong>S/. 15.000</strong>?
-            </p>
-          </Limits>
-          <Button
-            type='button'
-            click={checkAmountHandler}
-            disabled={props.sending < 30 || !!props.errors.receiving || (!selling && !buying)}
-            className={classes.Unique}
-          >
-            Continuar
-          </Button>
-        </div>
+        {/* <p className='alert-msg mt-4'>* Solo se aceptan transferencias bancarias.</p> */}
+        <Limits>
+          <p>
+            ¿Monto mayor a <br /> <strong>5.000 $</strong> o <strong>S/. 15.000</strong>?
+          </p>
+        </Limits>
+        <Button type='button' click={checkAmountHandler} disabled={props.sending < 30 || !!props.errors.receiving || (!selling && !buying)} className={classes.Unique}>
+          Continuar
+        </Button>
       </div>
     </>
   );
