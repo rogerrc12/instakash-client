@@ -194,7 +194,7 @@
   }
 
   &.Step2::before {
-    width: 105px !important;
+    width: 99px !important;
 
     @media #{$min-desktop} {
       width: 3px !important;
@@ -203,7 +203,7 @@
   }
 
   &.Step3::before {
-    width: 200px !important;
+    width: 177px !important;
 
     @media #{$min-desktop} {
       width: 3px !important;

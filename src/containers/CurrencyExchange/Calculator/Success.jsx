@@ -41,7 +41,7 @@ const Success = (props) => {
           <p>Monto a transferir:</p>
           <p>
             <strong>
-              {newExchange.currencyFrom.symbol} {newExchange.amountSell.toFixed(2)}
+              {newExchange.exchangeType.currencyType.symbol} {newExchange.amountSell.toFixed(2)}
             </strong>
           </p>
         </div>
@@ -77,9 +77,9 @@ const Success = (props) => {
           <AiOutlineInfoCircle />
         </Tooltip>
       </div>
-      <div className={classes.TransferWrapper}>
+      <div className={`${classes.ActionWrapper} mb-3`}>
         <input type='text' name='transferNumber' placeholder='Número de transferencia' onChange={onChangeTransfer} />
-        <Button type='button' disabled={!transferNumber || isLoading} click={sendTransferNumber} className={`ld-over ${isLoading ? "running" : ""}`}>
+        <Button type='button' disabled={!transferNumber || isLoading} click={sendTransferNumber} className={`ld-over  ${isLoading ? "running" : ""} ${classes.LastButton}`}>
           <span className='ld ld-ring ld-spin text-base' />
           Enviar
         </Button>
@@ -92,7 +92,7 @@ const Success = (props) => {
         <Button type='button' click={cancelExchangeHandler}>
           Cancelar
         </Button>
-        <Link to='/actividad' className={classes.Unique}>
+        <Link to='/actividad' className={classes.LastButton}>
           Ir al inicio
         </Link>
       </div>

@@ -9,8 +9,6 @@ import AddAccountForm from "../Accounts/Form";
 import UpdateProfileForm from "../Profile/UpdateProfile";
 import Modal from "../../components/UI/Modal";
 
-import ExchangeSteps from "../../assets/images/illustrations/currency-steps.svg";
-import ExchangeSuccess from "../../assets/images/illustrations/transaction-success.svg";
 import classes from "./CurrencyExchange.module.scss";
 
 const CurrencyExchange = (props) => {
@@ -36,21 +34,23 @@ const CurrencyExchange = (props) => {
     <>
       <main>
         <div className={classes.CalculatorWrapper}>
-          {step < 3 ? <Steps step={step} /> : null}
-          <Calculator
-            accounts={accounts}
-            step={step}
-            goNext={setNextStep}
-            goBack={setPrevStep}
-            goStep={goStepHandler}
-            prices={prices}
-            limits={limits}
-            newExchange={newExchange}
-            processed={processed}
-            modalType={modalType}
-            setModalType={setModalType}
-            exchangeRateId={exchangeRateId}
-          />
+          <div className={classes.CalculatorSection}>
+            {step < 3 ? <Steps step={step} /> : null}
+            <Calculator
+              accounts={accounts}
+              step={step}
+              goNext={setNextStep}
+              goBack={setPrevStep}
+              goStep={goStepHandler}
+              prices={prices}
+              limits={limits}
+              newExchange={newExchange}
+              processed={processed}
+              modalType={modalType}
+              setModalType={setModalType}
+              exchangeRateId={exchangeRateId}
+            />
+          </div>
         </div>
       </main>
       <Modal animationClassName='slide-up-down'>

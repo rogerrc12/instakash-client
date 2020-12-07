@@ -24,15 +24,15 @@ export function* getActivity() {
         statusColor: cambio.transactionState.hexaColor.toLowerCase(),
         orderId: cambio.pedidoId,
         date: moment(cambio.paymentDate).format("DD/MM/YYYY hh:mm a"),
-        amountToSend: `${cambio.currencyFrom.symbol} ${cambio.amountSell.toFixed(2)}`,
-        amount: `${cambio.currencyTo.symbol} ${cambio.amountReceive.toFixed(2)}`,
+        amountToSend: `${cambio.exchangeType.currencyType.symbol} ${cambio.amountSell.toFixed(2)}`,
+        amount: `${cambio.exchangeTo.currencyType.symbol} ${cambio.amountReceive.toFixed(2)}`,
         bankToDeposit: cambio.bank.name,
         bankImg: cambio.bank.image,
         bankAccount: cambio.accountNumber,
         instaBankName: cambio.instaAccount.bank ? cambio.instaAccount.bank.name : "no tiene nombre",
         instaBankImage: cambio.instaAccount.bank ? cambio.instaAccount.bank.image : "No tiene imagen",
         instaAccount: cambio.instaAccount.direct,
-        rate: cambio.currencyFrom.idCurrencyType === 1 ? "S/. " + cambio.historicalTransaccion.totalBuy : "S/. " + cambio.historicalTransaccion.totalSale,
+        rate: cambio.exchangeType.idExchangeType === 1 ? "S/. " + cambio.historicalTransaccion.totalBuy : "S/. " + cambio.historicalTransaccion.totalSale,
       }));
     }
 

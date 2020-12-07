@@ -8,7 +8,6 @@ import AddAccountForm from "../Accounts/Form";
 import Modal from "../../components/UI/Modal";
 import CashForm from "../CashAdvance/CashForm";
 
-import AdvanceSteps from "../../assets/images/illustrations/advance-steps.svg";
 import classes from "./CashAdvance.module.scss";
 
 const CashAdvance = (props) => {

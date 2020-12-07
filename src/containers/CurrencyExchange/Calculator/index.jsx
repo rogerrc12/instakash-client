@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from "react";
 import * as actions from "../../../store/actions";
 import { useSelector, connect } from "react-redux";
 import { Formik, Form } from "formik";
+import { isMobile } from "react-device-detect";
 
 import { currencyExchangeValues } from "../../../shared/formValues";
 import { validateCurrencyExchange } from "../../../shared/validations";
@@ -79,17 +80,17 @@ const Calculator = (props) => {
   useEffect(() => {
     let timer;
 
-    // if (step < 3) {
-    //   timer = setTimeout(() => logout(), 300000);
-    // }
+    if (step < 3) {
+      timer = setTimeout(() => logout(), 300000);
+    }
 
-    // return () => {
-    //   clearTimeout(timer);
-    // };
+    return () => {
+      clearTimeout(timer);
+    };
   }, [newExchange, goStep, step, logout]);
 
   return (
-    <div className={classes.Calculator}>
+    <div className={`${classes.Calculator} ${step === 3 && !isMobile ? "ml-6" : ""}`}>
       <Formik
         initialValues={currencyExchangeValues(prices.buying, solesId, dolaresId, exchangeRateId)}
         validationSchema={validateCurrencyExchange}
