@@ -51,6 +51,19 @@ const CurrencyExchange = (props) => {
               exchangeRateId={exchangeRateId}
             />
           </div>
+          <div className={classes.InfoSection}>
+            <h4>Tiempo estimado de espera</h4>
+            <p>- De 15 a 20 minutos</p>
+            <p className='mt-4'>
+              <strong>* Solo operamos con BCP e Interbank.</strong>
+            </p>
+            <p>
+              <strong>* Solo aceptamos transferencias bancarias.</strong>
+            </p>
+            <p>
+              <strong>* Montos mayores a USD $5,000 pueden demorar hasta 1 hora.</strong>
+            </p>
+          </div>
         </div>
       </main>
       <Modal animationClassName='slide-up-down'>

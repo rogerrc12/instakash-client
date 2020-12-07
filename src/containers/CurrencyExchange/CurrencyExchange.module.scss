@@ -43,7 +43,7 @@
     background-color: $light-gray;
     padding-left: 0;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: space-between;
     z-index: 1;
 
     h2 {
@@ -63,7 +63,43 @@
       right: 0px;
       bottom: 0px;
       left: 0px;
-      opacity: 0.25;
+      opacity: 0.1;
+    }
+  }
+}
+
+.InfoSection {
+  text-align: center;
+  z-index: 1;
+  margin-top: 30px;
+
+  p {
+    font-size: 0.9rem;
+  }
+
+  h4 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: $text-green;
+  }
+
+  @media #{$min-desktop} {
+    text-align: left;
+  }
+
+  @media (min-width: 768px) and (max-width: 996px) {
+    display: none;
+  }
+
+  @media screen and (min-width: 1440px) {
+    margin-right: 100px;
+
+    h4 {
+      font-size: 1.4rem;
+    }
+
+    p {
+      font-size: 1rem;
     }
   }
 }
