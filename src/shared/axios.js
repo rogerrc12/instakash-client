@@ -1,17 +1,17 @@
 import axios from "axios";
 
-const baseURL = "https://api-prod.instakash.net/api";
-
-// process.env.NODE_ENV !== "production" ? "https://api-test.instakash.net/api" :
+const baseURL = process.env.NODE_ENV !== "production" ? "https://api-test.instakash.net/api" : "https://api-prod.instakash.net/api";
 
 const axiosInstance = axios.create({
   baseURL,
   timeout: 20000,
 });
 
+const requestLog = (config) => (process.env.NODE_ENV !== "production" ? console.log(`Request sent to ${config.url}`) : false);
+
 axiosInstance.interceptors.request.use(
   (config) => {
-    process.env.NODE_ENV !== "production" && console.log(`Request sent to ${config.url}`);
+    requestLog(config);
     return config;
   },
   (error) => {
