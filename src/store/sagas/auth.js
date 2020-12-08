@@ -44,7 +44,8 @@ function* loadUser() {
       const userId = yield call([localStorage, "getItem"], "userId");
 
       try {
-        const userData = yield call(() => onAuthStateChanged(userId));
+        const userData = yield call(onAuthStateChanged, userId);
+        console.log(userData);
 
         const user = {
           name: userData.firstName + " " + userData.lastName,
@@ -100,10 +101,7 @@ function* registerUser(action) {
     yield call(loadUser);
   } catch (error) {
     console.log(error);
-    yield openNotification(
-      "error",
-      "Ha ocurrido un error durante el registro. Por favor intenta nuevamente. Si el problema persiste contacta a soporte."
-    );
+    yield openNotification("error", "Ha ocurrido un error durante el registro. Por favor intenta nuevamente. Si el problema persiste contacta a soporte.");
   }
 }
 
@@ -180,10 +178,7 @@ function* SendPasswordEmail(action) {
     swal("Mensaje enviado!", "Recuerda revisar tu carpeta de spam.", "success");
     yield put(actions.sendPasswordEmail());
   } catch (error) {
-    yield openNotification(
-      "error",
-      "Ha ocurrido un error al enviar el correo. Por favor, intenta nuevamente. Si el problema persiste contacta a soporte."
-    );
+    yield openNotification("error", "Ha ocurrido un error al enviar el correo. Por favor, intenta nuevamente. Si el problema persiste contacta a soporte.");
     yield put(actions.sendPasswordEmailFail());
   }
 }
@@ -219,10 +214,7 @@ function* changePassword(action) {
     return history.push("/login");
   } catch (error) {
     yield put(actions.changePasswordFail());
-    yield openNotification(
-      "error",
-      "Ha ocurrido un error al cambiar tu contraseña. Por favor intenta nuevamente, si el problema persiste contacta a soporte."
-    );
+    yield openNotification("error", "Ha ocurrido un error al cambiar tu contraseña. Por favor intenta nuevamente, si el problema persiste contacta a soporte.");
   }
 }
 
@@ -239,10 +231,7 @@ function* changePhoneNumber(action) {
     }
   } catch (error) {
     console.log(error);
-    yield openNotification(
-      "error",
-      "Ha ocurrido un error actualizando el número de teléfono. Por favor intenta de nuevo, si el problema persiste contacta a soporte."
-    );
+    yield openNotification("error", "Ha ocurrido un error actualizando el número de teléfono. Por favor intenta de nuevo, si el problema persiste contacta a soporte.");
     yield put(actions.changePhoneNumberFail());
   }
 }
@@ -260,10 +249,7 @@ function* changeAddress(action) {
     }
   } catch (error) {
     console.log(error);
-    yield openNotification(
-      "error",
-      "Ha ocurrido un error actualizando la dirección. Por favor intenta de nuevo, si el problema persiste contacta a soporte."
-    );
+    yield openNotification("error", "Ha ocurrido un error actualizando la dirección. Por favor intenta de nuevo, si el problema persiste contacta a soporte.");
     yield put(actions.changeAddressFail());
   }
 }

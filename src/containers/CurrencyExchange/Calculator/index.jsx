@@ -41,13 +41,11 @@ const Calculator = (props) => {
       setField("idCurrencyToSend", dolaresId);
       setField("receiving", +sending * prices.buying);
       setField("rate", prices.buying);
-      setField("comision", props.comisiones.compra);
     } else {
       setField("idCurrencyToReceive", dolaresId);
       setField("idCurrencyToSend", solesId);
       setField("receiving", +sending / prices.selling);
       setField("rate", prices.selling);
-      setField("comision", props.comisiones.venta);
     }
   };
 
