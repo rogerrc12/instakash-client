@@ -45,7 +45,6 @@ function* loadUser() {
 
       try {
         const userData = yield call(onAuthStateChanged, userId);
-        console.log(userData);
 
         const user = {
           name: userData.firstName + " " + userData.lastName,
@@ -100,7 +99,6 @@ function* registerUser(action) {
     yield put(actions.registerUser(token));
     yield call(loadUser);
   } catch (error) {
-    console.log(error);
     yield openNotification("error", "Ha ocurrido un error durante el registro. Por favor intenta nuevamente. Si el problema persiste contacta a soporte.");
   }
 }
