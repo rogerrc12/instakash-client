@@ -33,7 +33,7 @@ const Header = (props) => {
           929 324 006
         </a>
         <p>
-          <span className='mr-1'>Lunes a Viernes:</span> <b>9AM a 7PM</b> <br /> <span className='mr-1'>Sábados:</span> <b>9AM a 3PM</b>
+          <span className='mr-1'>Lunes a Viernes:</span> <b>9AM a 7PM</b> <br /> <span className='mr-1'>Sábados y feriados:</span> <b>9AM a 3PM</b>
         </p>
       </div>
 

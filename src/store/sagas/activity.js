@@ -23,7 +23,7 @@ export function* getActivity() {
         status: cambio.transactionState.description.toLowerCase(),
         statusColor: cambio.transactionState.hexaColor.toLowerCase(),
         orderId: cambio.pedidoId,
-        date: moment(cambio.paymentDate).format("DD/MM/YYYY hh:mm a"),
+        date: moment(cambio.paymentDate).format("DD/MM/YYYY"),
         amountToSend: `${cambio.exchangeType.currencyType.symbol} ${cambio.amountSell.toFixed(2)}`,
         amount: `${cambio.exchangeTo.currencyType.symbol} ${cambio.amountReceive.toFixed(2)}`,
         bankToDeposit: cambio.bank.name,
