@@ -15,7 +15,7 @@ export function* getActivity() {
     const res = yield axios.get(`/Actividad/Actividades?IdUsuario=${userId}`);
 
     const { cambiosDeDivisas, avancesDeEfectivo } = res.data;
-    console.log(cambiosDeDivisas);
+
     if (cambiosDeDivisas.length > 0) {
       currencyExchanges = cambiosDeDivisas.map((cambio) => ({
         id: cambio.idPayment,

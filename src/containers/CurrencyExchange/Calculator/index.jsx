@@ -15,7 +15,7 @@ import Success from "./Success";
 import classes from "../CurrencyExchange.module.scss";
 
 const Calculator = (props) => {
-  const { prices } = props;
+  const { prices, connection } = props;
 
   const { accounts, step, goNext, goBack, goStep, logout, newExchange, setModalType, exchangeRateId } = props;
   const formRef = useRef();
@@ -68,24 +68,24 @@ const Calculator = (props) => {
     <Step1 next={goNext} prices={prices} changeAmount={changeAmountHandler} changeCondition={changeConditionHandler} {...values} errors={errors} setModal={setModalType} />,
     <Step2 prev={goBack} next={goNext} {...values} />,
     <Step3 accounts={accounts} prev={goBack} valid={valid} next={goNext} {...values} setModal={setModalType} />,
-    <Success goStep={goStep} {...values} />,
+    <Success goStep={goStep} connection={connection} {...values} />,
   ];
-
-  const onSubmit = (values) => {
-    props.createExchange(values, goStep);
-  };
 
   useEffect(() => {
     let timer;
 
     if (step < 3) {
-      timer = setTimeout(() => logout(), 300000);
+      timer = setTimeout(() => logout(), 3000000);
     }
 
     return () => {
       clearTimeout(timer);
     };
   }, [newExchange, goStep, step, logout]);
+
+  const onSubmit = (values) => {
+    props.createExchange(values, goStep, connection);
+  };
 
   return (
     <div className={`${classes.Calculator} ${step === 3 && !isMobile ? "ml-6" : ""}`}>
@@ -103,7 +103,7 @@ const Calculator = (props) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  createExchange: (values, goStep) => dispatch(actions.createExchangeInit(values, goStep)),
+  createExchange: (values, goStep, connection) => dispatch(actions.createExchangeInit(values, goStep, connection)),
   logout: () => dispatch(actions.logoutInit()),
 });
 

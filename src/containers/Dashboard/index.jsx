@@ -10,7 +10,7 @@ import Modal from "../../components/UI/Modal";
 import classes from "./Dashboard.module.scss";
 
 const Dashboard = (props) => {
-  const { getActivity } = props;
+  const { getActivity, connection } = props;
 
   const { currencyExchanges, cashAdvances, isLoading } = useSelector((state) => state.activity);
 
@@ -48,7 +48,7 @@ const Dashboard = (props) => {
         <ActivityTables isLoading={isLoading} CEdata={currencyExchanges} CAdata={cashAdvances} open={openDetails} />
       </main>
       <Modal animationClassName='slide-right-left' close={clearModal} className={classes.DetailsModal}>
-        <Details id={detailsId} type={detailsType} />
+        <Details connection={connection} id={detailsId} type={detailsType} />
       </Modal>
     </>
   );

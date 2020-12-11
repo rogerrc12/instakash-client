@@ -11,7 +11,7 @@ import CopyButton from "../../components/UI/CopyButton";
 import classes from "./Dashboard.module.scss";
 
 const ActivityDetails = (props) => {
-  const { getExchangeDetails, id, exchangeDetails, getAdvanceDetails, advanceDetails, type } = props;
+  const { getExchangeDetails, id, exchangeDetails, getAdvanceDetails, advanceDetails, type, connection } = props;
 
   useEffect(() => {
     if (type === "exchange") {
@@ -97,7 +97,7 @@ const ActivityDetails = (props) => {
           <p className='text-right'>{exchangeDetails.rate}</p>
         </div>
         <div className='flex justify-center mt-8'>
-          <TransferForm type={props.type} statusId={exchangeDetails.statusId} processExchange={props.processExchange} id={id} />
+          <TransferForm connection={connection} type={props.type} statusId={exchangeDetails.statusId} processExchange={props.processExchange} id={id} />
         </div>
       </>
     );
@@ -153,7 +153,7 @@ const ActivityDetails = (props) => {
           </div>
         ) : null}
         <div className='flex justify-center mt-8'>
-          <TransferForm type={props.type} statusId={advanceDetails.statusId} id={id} processAdvance={props.processAdvance} />
+          <TransferForm connection={connection} type={props.type} statusId={advanceDetails.statusId} id={id} processAdvance={props.processAdvance} />
         </div>
       </>
     );
@@ -179,7 +179,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getExchangeDetails: (id) => dispatch(actions.getExchangeDetailsInit(id)),
     getAdvanceDetails: (id) => dispatch(actions.getAdvanceDetailsInit(id)),
-    processExchange: (id, transferNumber) => dispatch(actions.processExchangeInit(id, transferNumber)),
+    processExchange: (id, transferNumber, connection) => dispatch(actions.processExchangeInit(id, transferNumber, null, connection)),
     processAdvance: (number, id) => dispatch(actions.processAdvanceInit(number, id)),
   };
 };

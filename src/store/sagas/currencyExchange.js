@@ -28,6 +28,7 @@ function* getPrices() {
 function* createExchange(action) {
   const userId = yield call(utilSagas.getUserId);
 
+  const { connection } = action;
   const { sending, receiving } = action.values;
 
   const newExchange = {
@@ -52,6 +53,7 @@ function* createExchange(action) {
     });
 
     if (res.status === 200) {
+      if (connection.connectionStarted) yield connection.invoke("CrearCD");
       yield put(actions.createExchange(res.data));
       yield call([action, "goStep"], 3);
     }
@@ -78,6 +80,8 @@ function* processExchange(action) {
     const res = yield axios.post(`/cambiodivisa/ProcesarActividad?Id=${id}&NumeroRef=${transferNumber}`);
 
     if (res.status === 200) {
+      if (action.connection.connectionStarted) yield action.connection.invoke("CrearCD");
+
       if (action.goStep) {
         yield call(() => action.goStep(0));
         yield history.push("/actividad");
@@ -92,7 +96,6 @@ function* processExchange(action) {
       });
 
       yield put(activityActions.getActivityInit());
-
       yield put(actions.processExchange());
     }
   } catch (error) {

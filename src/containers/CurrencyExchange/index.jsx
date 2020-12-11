@@ -12,7 +12,7 @@ import Modal from "../../components/UI/Modal";
 import classes from "./CurrencyExchange.module.scss";
 
 const CurrencyExchange = (props) => {
-  const { getPrices } = props;
+  const { getPrices, connection } = props;
   const [modalType, setModalType] = useState("profile");
   const [step, setStep] = useState(0);
 
@@ -49,6 +49,7 @@ const CurrencyExchange = (props) => {
               modalType={modalType}
               setModalType={setModalType}
               exchangeRateId={exchangeRateId}
+              connection={connection}
             />
           </div>
           <div className={classes.InfoSection}>

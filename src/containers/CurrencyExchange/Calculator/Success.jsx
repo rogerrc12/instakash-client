@@ -22,7 +22,7 @@ const Success = (props) => {
     if (transferNumber.length < 5 || transferNumber.length > 10 || !onlyNumbers.test(transferNumber)) return setError(true);
 
     setError(false);
-    props.processExchange(newExchange.idPayment, transferNumber, props.goStep);
+    props.processExchange(newExchange.idPayment, transferNumber, props.goStep, props.connection);
   };
 
   const cancelExchangeHandler = () => props.cancelExchange(newExchange.idPayment);
@@ -102,7 +102,7 @@ const Success = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    processExchange: (id, transferNumber, goStep) => dispatch(actions.processExchangeInit(id, transferNumber, goStep)),
+    processExchange: (id, transferNumber, goStep, connection) => dispatch(actions.processExchangeInit(id, transferNumber, goStep, connection)),
     cancelExchange: (id) => dispatch(actions.cancelExchangeInit(id)),
   };
 };

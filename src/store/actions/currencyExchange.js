@@ -15,10 +15,11 @@ export const getPricesError = () => ({
   type: actionTypes.GET_EXCHANGE_PRICES_ERROR,
 });
 
-export const createExchangeInit = (values, goStep) => ({
+export const createExchangeInit = (values, goStep, connection) => ({
   type: actionTypes.CREATE_EXCHANGE_INIT,
   values,
   goStep,
+  connection,
 });
 
 export const createExchange = (newExchange) => ({
@@ -30,11 +31,12 @@ export const createExchangeError = () => ({
   type: actionTypes.CREATE_EXCHANGE_FAILED,
 });
 
-export const processExchangeInit = (id, transferNumber, goStep) => ({
+export const processExchangeInit = (id, transferNumber, goStep, connection) => ({
   type: actionTypes.PROCESS_EXCHANGE_INIT,
   id,
   transferNumber,
   goStep,
+  connection,
 });
 
 export const processExchange = () => ({

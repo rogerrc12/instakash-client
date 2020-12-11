@@ -14,7 +14,7 @@ const Transferform = (props) => {
 
   const onSubmit = async (values) => {
     if (props.type === "exchange") {
-      props.processExchange(props.id, values.transferNumber);
+      props.processExchange(props.id, values.transferNumber, props.connection);
     } else {
       props.processAdvance(values.transferNumber, props.id);
     }
