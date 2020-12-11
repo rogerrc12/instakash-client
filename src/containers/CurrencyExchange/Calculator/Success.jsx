@@ -41,7 +41,7 @@ const Success = (props) => {
           <p>Monto a transferir:</p>
           <p>
             <strong>
-              {newExchange.exchangeType.currencyType.symbol} {newExchange.amountSell.toFixed(2)}
+              {newExchange.currencyFrom.symbol} {newExchange.amountSell.toFixed(2)}
             </strong>
           </p>
         </div>
