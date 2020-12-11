@@ -91,15 +91,23 @@ function* registerUser(action) {
   try {
     const body = JSON.stringify(userData);
     const res = yield axios.post("/Usuario/Registro", body, { headers: { "Content-type": "application/json" } });
-    const { token, idUser } = res.data;
-    const expTime = yield new Date(new Date().getTime() + 3600 * 1000);
-    yield call([localStorage, "setItem"], "idToken", token);
-    yield call([localStorage, "setItem"], "userId", idUser);
-    yield call([localStorage, "setItem"], "expTime", expTime);
-    yield put(actions.registerUser(token));
-    yield call(loadUser);
+    if (res.status === 200) {
+      const { token, idUser } = res.data;
+      const expTime = yield new Date(new Date().getTime() + 3600 * 1000);
+      yield call([localStorage, "setItem"], "idToken", token);
+      yield call([localStorage, "setItem"], "userId", idUser);
+      yield call([localStorage, "setItem"], "expTime", expTime);
+      yield put(actions.registerUser(token));
+      yield call(loadUser);
+    }
   } catch (error) {
-    yield openNotification("error", "Ha ocurrido un error durante el registro. Por favor intenta nuevamente. Si el problema persiste contacta a soporte.");
+    let message = "Ha ocurrido un error durante el registro. Por favor intenta nuevamente. Si el problema persiste contacta a soporte.";
+
+    if (error.status === 404) message = "Al parecer el RUC no existe o no es válido con la razón social. Por favor, verifique que ambas son válidas e intente de nuevo.";
+
+    yield openNotification("error", message);
+
+    yield put(actions.registerUserFail());
   }
 }
 
