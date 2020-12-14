@@ -16,7 +16,7 @@ const Transferform = (props) => {
     if (props.type === "exchange") {
       props.processExchange(props.id, values.transferNumber, props.connection);
     } else {
-      props.processAdvance(values.transferNumber, props.id);
+      props.processAdvance(values.transferNumber, props.id, props.connection);
     }
   };
 

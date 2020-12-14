@@ -31,7 +31,7 @@ const Success = (props) => {
     if (!onlyNumbers.test(paymentNumber)) return setError(true);
 
     setError(false);
-    props.processAdvance(paymentNumber, newAdvanceId, props.goStep);
+    props.processAdvance(paymentNumber, newAdvanceId, props.goStep, props.connection);
   };
 
   const cancelAdvanceHandler = () => props.cancelAdvance(newAdvanceId, props.goStep);
@@ -50,18 +50,12 @@ const Success = (props) => {
         </div>
       </div>
 
-      {selectedBank.idBank === 24 ? (
-        <BbvaCardOption />
-      ) : selectedBank.idBank === 21 ? (
-        <ScotiaCardOption />
-      ) : (
-        <OtherCardOption paymentLink={paymentLink} />
-      )}
+      {selectedBank.idBank === 24 ? <BbvaCardOption /> : selectedBank.idBank === 21 ? <ScotiaCardOption /> : <OtherCardOption paymentLink={paymentLink} />}
 
       <div className={classes.TransferInfo}>
         <p className='m-l2'>
-          Envíenos su <strong>referencia de pago</strong> o <strong>nro. de operación</strong> en el casillero que se encuentra debajo. En un{" "}
-          <strong>máximo de 30 minutos</strong> recibirá su avance.
+          Envíenos su <strong>referencia de pago</strong> o <strong>nro. de operación</strong> en el casillero que se encuentra debajo. En un <strong>máximo de 30 minutos</strong>{" "}
+          recibirá su avance.
         </p>
         <AiOutlineInfoCircle />
       </div>
@@ -89,7 +83,7 @@ const Success = (props) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  processAdvance: (number, id, goStep) => dispatch(actions.processAdvanceInit(number, id, goStep)),
+  processAdvance: (number, id, goStep, connection) => dispatch(actions.processAdvanceInit(number, id, goStep, connection)),
   cancelAdvance: (id, goStep) => dispatch(actions.cancelAdvanceInit(id, goStep)),
 });
 

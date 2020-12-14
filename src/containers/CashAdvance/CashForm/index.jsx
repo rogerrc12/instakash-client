@@ -12,7 +12,7 @@ import Confirmation from "./Confirmation";
 import Success from "./Success";
 
 const CashForm = (props) => {
-  const { step, accounts, goNext, goBack, goStep, validateLimit, getBanks } = props;
+  const { step, accounts, goNext, goBack, goStep, validateLimit, getBanks, connection } = props;
   const { limits, rate } = useSelector((state) => state.cashAdvance);
 
   useEffect(() => {
@@ -24,10 +24,10 @@ const CashForm = (props) => {
     <Step2 accounts={accounts} {...props} goBack={goBack} goNext={goNext} />,
     <Step3 {...props} goBack={goBack} goNext={goNext} />,
     <Confirmation {...props} rate={rate} goBack={goBack} goStep={goStep} />,
-    <Success {...props} goStep={goStep} />,
+    <Success {...props} goStep={goStep} connection={connection} />,
   ];
 
-  const onSubmit = (values) => props.createAdvance(values, goStep);
+  const onSubmit = (values) => props.createAdvance(values, goStep, connection);
 
   return (
     <div className='relative'>
@@ -40,7 +40,7 @@ const CashForm = (props) => {
 
 const mapDispatchToProps = (dispatch) => ({
   getBanks: () => dispatch(actions.getBanksInit()),
-  createAdvance: (values, goStep) => dispatch(actions.createAdvanceInit(values, goStep)),
+  createAdvance: (values, goStep, connection) => dispatch(actions.createAdvanceInit(values, goStep, connection)),
   validateLimit: (values, goNext) => dispatch(actions.validateLimitInit(values, goNext)),
 });
 

@@ -37,7 +37,7 @@ const MainApp = (props) => {
   }, [getAccounts]);
 
   useEffect(() => {
-    let hubConnection = new signalR.HubConnectionBuilder().withUrl(process.env.REACT_APP_WS).build();
+    let hubConnection = new signalR.HubConnectionBuilder().withUrl(process.env.REACT_APP_WS).withAutomaticReconnect().build();
 
     setConnection(hubConnection);
   }, []);
@@ -63,7 +63,7 @@ const MainApp = (props) => {
       <Route exact path='/' component={Welcome} />
       <Route path={props.match.url + "actividad"} component={AsyncComponent(Dashboard, connection)} />
       <Route path={props.match.url + "cambio-de-divisas"} component={AsyncComponent(CurrencyExchange, connection)} />
-      <Route path={props.match.url + "avance-de-efectivo"} component={AsyncComponent(CashAdvance)} />
+      <Route path={props.match.url + "avance-de-efectivo"} component={AsyncComponent(CashAdvance, connection)} />
       <Route path={props.match.url + "mis-cuentas"} component={AsyncComponent(Accounts)} />
       <Route path={props.match.url + "mi-perfil"} component={AsyncComponent(Profile)} />
       <FooterNav />

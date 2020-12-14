@@ -14,10 +14,11 @@ export const getLimitsFail = () => ({
   type: actionTypes.GET_ADVANCE_LIMITS_FAILED,
 });
 
-export const createAdvanceInit = (values, goStep) => ({
+export const createAdvanceInit = (values, goStep, connection) => ({
   type: actionTypes.CREATE_ADVANCE_INIT,
   values,
   goStep,
+  connection,
 });
 
 export const createAdvance = (id, link) => ({
@@ -30,11 +31,12 @@ export const createAdvanceFail = () => ({
   type: actionTypes.CREATE_ADVANCE_FAILED,
 });
 
-export const processAdvanceInit = (number, id, goStep = null) => ({
+export const processAdvanceInit = (number, id, goStep = null, connection) => ({
   type: actionTypes.PROCESS_ADVANCE_INIT,
   number,
   id,
   goStep,
+  connection,
 });
 
 export const processAdvance = () => ({

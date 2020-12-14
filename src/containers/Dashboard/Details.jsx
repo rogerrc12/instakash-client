@@ -180,7 +180,7 @@ const mapDispatchToProps = (dispatch) => {
     getExchangeDetails: (id) => dispatch(actions.getExchangeDetailsInit(id)),
     getAdvanceDetails: (id) => dispatch(actions.getAdvanceDetailsInit(id)),
     processExchange: (id, transferNumber, connection) => dispatch(actions.processExchangeInit(id, transferNumber, null, connection)),
-    processAdvance: (number, id) => dispatch(actions.processAdvanceInit(number, id)),
+    processAdvance: (number, id, connection) => dispatch(actions.processAdvanceInit(number, id, null, connection)),
   };
 };
 

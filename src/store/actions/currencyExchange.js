@@ -31,7 +31,7 @@ export const createExchangeError = () => ({
   type: actionTypes.CREATE_EXCHANGE_FAILED,
 });
 
-export const processExchangeInit = (id, transferNumber, goStep, connection) => ({
+export const processExchangeInit = (id, transferNumber, goStep = null, connection) => ({
   type: actionTypes.PROCESS_EXCHANGE_INIT,
   id,
   transferNumber,

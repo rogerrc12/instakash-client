@@ -4,7 +4,7 @@ import * as actionTypes from "../actionTypes";
 import * as utilities from "./utility";
 import axios from "../../shared/axios";
 import { openNotification } from "../../shared/antd";
-import moment from "moment";
+import moment from "moment-timezone";
 
 export function* getActivity() {
   const userId = yield call(utilities.getUserId);
@@ -17,13 +17,14 @@ export function* getActivity() {
     const { cambiosDeDivisas, avancesDeEfectivo } = res.data;
 
     if (cambiosDeDivisas.length > 0) {
+      console.log(cambiosDeDivisas);
       currencyExchanges = cambiosDeDivisas.map((cambio) => ({
         id: cambio.idPayment,
         statusId: cambio.transactionState.idTransactionState,
         status: cambio.transactionState.description.toLowerCase(),
         statusColor: cambio.transactionState.hexaColor.toLowerCase(),
         orderId: cambio.pedidoId,
-        date: moment(cambio.paymentDate).format("DD/MM/YYYY hh:mm a"),
+        date: moment(cambio.paymentDate).tz("America/Lima").format("DD-MM-YYYY hh:mm a"),
         amountToSend: `${cambio.currencyFrom.symbol} ${cambio.amountSell.toFixed(2)}`,
         amount: `${cambio.currencyTo.symbol} ${cambio.amountReceive.toFixed(2)}`,
         bankToDeposit: cambio.bank.name,

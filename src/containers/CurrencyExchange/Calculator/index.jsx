@@ -75,7 +75,7 @@ const Calculator = (props) => {
     let timer;
 
     if (step < 3) {
-      timer = setTimeout(() => logout(), 3000000);
+      timer = setTimeout(() => logout(), 300000);
     }
 
     return () => {

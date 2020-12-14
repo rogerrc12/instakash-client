@@ -33,7 +33,7 @@ const CashAdvance = (props) => {
         <div className={classes.CashAdvanceWrapper}>
           {step < 4 ? <Steps step={step} type='cash-advance' /> : null}
           <div className={classes.CashFormWrapper}>
-            <CashForm step={step} accounts={accounts} goNext={setNextStep} goBack={setPrevStep} goStep={goStepHandler} />
+            <CashForm connection={props.connection} step={step} accounts={accounts} goNext={setNextStep} goBack={setPrevStep} goStep={goStepHandler} />
           </div>
         </div>
       </main>

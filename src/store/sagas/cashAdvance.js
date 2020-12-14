@@ -26,6 +26,7 @@ function* getLimits() {
 
 function* createAdvance(action) {
   const userId = yield call(utilSagas.getUserId);
+  const { connection } = action;
 
   const newAdvance = {
     IdBankAccount: action.values.bankToReceive,
@@ -42,6 +43,7 @@ function* createAdvance(action) {
     });
 
     if (res.status === 200) {
+      if (connection.connectionStarted) yield connection.invoke("CrearAE");
       const { idAvanceEfectivo, link } = res.data;
 
       yield put(advanceActions.createAdvance(idAvanceEfectivo, link));
@@ -55,10 +57,14 @@ function* createAdvance(action) {
 }
 
 function* processAdvance(action) {
+  const { connection } = action;
+
   try {
     const res = yield axios.post(`/AvanceEfectivo/ValidarAvanceEfectivo?IdActividad=${action.id}&NumOperacion=${action.number}`);
 
     if (res.status === 200) {
+      if (connection.connectionStarted) yield connection.invoke("CrearAE");
+
       if (action.goStep) {
         yield call(() => action.goStep(0));
         yield history.push("/actividad");
