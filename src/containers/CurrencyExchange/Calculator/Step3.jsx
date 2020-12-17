@@ -24,8 +24,6 @@ const Step3 = (props) => {
     }
   }
 
-  console.log(isLoading);
-
   return (
     <>
       <h2>
