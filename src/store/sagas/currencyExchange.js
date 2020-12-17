@@ -1,4 +1,4 @@
-import { takeLatest, put, all, call } from "redux-saga/effects";
+import { takeLatest, put, all, call, delay } from "redux-saga/effects";
 import { openNotification } from "../../shared/antd";
 import * as actions from "../actions/currencyExchange";
 import * as modalActions from "../actions/modal";
@@ -56,6 +56,7 @@ function* createExchange(action) {
       if (connection.connectionStarted) yield connection.invoke("CrearCD");
       yield put(actions.createExchange(res.data));
       yield call([action, "goStep"], 3);
+      yield put(actions.removeLoading());
     }
   } catch (error) {
     let message = "Ha ocurrido un error creando su solicitud, por favor intente de nuevo. Si el problema persiste contacte a soporte.";

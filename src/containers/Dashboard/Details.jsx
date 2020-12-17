@@ -87,7 +87,7 @@ const ActivityDetails = (props) => {
           </p>
         </div>
         <div className='flex items-center justify-between my-4'>
-          <h4>Cuenta a debitar:</h4>
+          <h4>Cuenta a recibir:</h4>
           <p className='text-right'>
             {exchangeDetails.bankToDeposit} <br /> {`termina en ${exchangeDetails.bankAccount.substring(exchangeDetails.bankAccount.length - 4, exchangeDetails.bankAccount)}`}
           </p>

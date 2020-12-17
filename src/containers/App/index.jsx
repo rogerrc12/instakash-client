@@ -37,7 +37,10 @@ const MainApp = (props) => {
   }, [getAccounts]);
 
   useEffect(() => {
-    let hubConnection = new signalR.HubConnectionBuilder().withUrl(process.env.REACT_APP_WS).withAutomaticReconnect().build();
+    let hubConnection = new signalR.HubConnectionBuilder()
+      .withUrl(process.env.NODE_ENV !== "production" ? process.env.REACT_APP_WS : process.env.REACT_APP_PROD_WS)
+      .withAutomaticReconnect()
+      .build();
 
     setConnection(hubConnection);
   }, []);

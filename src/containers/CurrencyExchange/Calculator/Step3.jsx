@@ -24,6 +24,8 @@ const Step3 = (props) => {
     }
   }
 
+  console.log(isLoading);
+
   return (
     <>
       <h2>
@@ -44,7 +46,7 @@ const Step3 = (props) => {
         <Button click={props.prev} className={classes.PrevButton} type='button'>
           Volver
         </Button>
-        <Button type='submit' disabled={!props.accountToReceive} className={`ld-over ${isLoading ? "running" : ""}`}>
+        <Button type='submit' disabled={!props.accountToReceive || isLoading} className={`ld-over ${isLoading ? "running" : ""}`}>
           <span className='ld ld-ring ld-spin text-base' />
           Crear cambio
         </Button>

@@ -17,7 +17,6 @@ export function* getActivity() {
     const { cambiosDeDivisas, avancesDeEfectivo } = res.data;
 
     if (cambiosDeDivisas.length > 0) {
-      console.log(cambiosDeDivisas);
       currencyExchanges = cambiosDeDivisas.map((cambio) => ({
         id: cambio.idPayment,
         statusId: cambio.transactionState.idTransactionState,

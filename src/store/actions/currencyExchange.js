@@ -56,6 +56,10 @@ export const cancelExchange = () => ({
   type: actionTypes.CANCEL_EXCHANGE_SUCCESS,
 });
 
+export const removeLoading = () => ({
+  type: actionTypes.REMOVE_EXCHANGE_LOADING,
+});
+
 export const cancelExchangeError = () => ({
   type: actionTypes.CANCEL_EXCHANGE_FAILED,
 });

@@ -30,12 +30,14 @@ export default function (state = initialState, action) {
       return { ...state, isLoading: false, newExchange: {} };
 
     case actionTypes.CREATE_EXCHANGE_SUCCESS:
-      return { ...state, newExchange: action.newExchange, isLoading: false, isBalance: false };
+      return { ...state, newExchange: action.newExchange, isBalance: false };
+
+    case actionTypes.REMOVE_EXCHANGE_LOADING:
+      return { ...state, isLoading: false };
 
     case actionTypes.CREATE_EXCHANGE_FAILED:
     case actionTypes.PROCESS_EXCHANGE_FAILED:
     case actionTypes.CANCEL_EXCHANGE_FAILED:
-    case actionTypes.CHECK_BALANCE_SUCCESS:
     case actionTypes.CHECK_BALANCE_FAILED:
       return { ...state, isLoading: false };
 
