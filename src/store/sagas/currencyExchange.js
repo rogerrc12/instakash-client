@@ -53,23 +53,25 @@ function* createExchange(action) {
     });
 
     if (res.status === 200) {
-      if (connection.connectionStarted) yield connection.invoke("CrearCD");
       yield put(actions.createExchange(res.data));
       yield call([action, "goStep"], 3);
+      if (connection.connectionStarted) yield connection.invoke("CrearCD");
       yield put(actions.removeLoading());
     }
   } catch (error) {
-    let message = "Ha ocurrido un error creando su solicitud, por favor intente de nuevo. Si el problema persiste contacte a soporte.";
-    if (error.status === 409) message = `Parece que tenemos problemas con el banco ${action.values.bankNameToReceive}. Si el problema persiste contacte a soporte.`;
-    yield openNotification("error", message);
-    yield put(actions.createExchangeError());
-  }
-}
+    console.log(error);
+    if (error.status === 404) {
+      yield sweetalert(
+        "Vaya!",
+        `En estos momentos tenemos problemas con la plataforma ${action.values.bankNameToReceive}. Por favor intente más tarde o contacte a soporte al (929) 324 006.`,
+        "error"
+      );
+    } else {
+      let message = "Ha ocurrido un error creando su solicitud, por favor intente de nuevo. Si el problema persiste contacte a soporte.";
 
-function* validateExchange(action) {
-  try {
-    yield call([utilSagas, "checkBalance"], { payload: { values: action.values, fn: () => createExchange(action), checkType: "currency-exchange" } });
-  } catch (error) {
+      yield openNotification("error", message);
+    }
+
     yield put(actions.createExchangeError());
   }
 }
@@ -147,9 +149,8 @@ function* cancelExchange(action) {
 export default function* watchCurrencyExchange() {
   yield all([
     takeLatest(actionTypes.GET_EXCHANGE_PRICES_INIT, getPrices),
-    takeLatest(actionTypes.CREATE_EXCHANGE_INIT, validateExchange),
+    takeLatest(actionTypes.CREATE_EXCHANGE_INIT, createExchange),
     takeLatest(actionTypes.PROCESS_EXCHANGE_INIT, processExchange),
     takeLatest(actionTypes.CANCEL_EXCHANGE_INIT, cancelExchange),
-    takeLatest(actionTypes.CHECK_BALANCE_INIT, utilSagas.checkBalance),
   ]);
 }

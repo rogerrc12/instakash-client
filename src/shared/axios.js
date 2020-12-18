@@ -25,7 +25,7 @@ axiosInstance.interceptors.response.use(
     console.log(error);
     console.warn("Error status", error.response ? error.response.status : error.code);
 
-    let message = "Ha ocurrido un error inesperado, por favor intenta más tarde";
+    let message = "Ha ocurrido un error inesperado, por favor intenta más tarde, si el problema persiste contacte a soporte.";
 
     if (error.code === "ECONNABORTED") {
       message = "Se ha agotado el tiempo de espera, por favor revise su conexión a internet. Si el problema persiste contacte a soporte.";
