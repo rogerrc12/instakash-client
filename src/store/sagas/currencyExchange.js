@@ -1,4 +1,4 @@
-import { takeLatest, put, all, call, delay } from "redux-saga/effects";
+import { takeLatest, put, all, call } from "redux-saga/effects";
 import { openNotification } from "../../shared/antd";
 import * as actions from "../actions/currencyExchange";
 import * as modalActions from "../actions/modal";
@@ -59,18 +59,18 @@ function* createExchange(action) {
       yield put(actions.removeLoading());
     }
   } catch (error) {
-    console.log(error);
+    let message = error.message;
+
     if (error.status === 404) {
       yield sweetalert(
         "Vaya!",
         `En estos momentos tenemos problemas con la plataforma ${action.values.bankNameToReceive}. Por favor intente más tarde o contacte a soporte al (929) 324 006.`,
         "error"
       );
-    } else {
-      let message = "Ha ocurrido un error creando su solicitud, por favor intente de nuevo. Si el problema persiste contacte a soporte.";
-
+    } else if (error.status === 409) {
+      let message = "Acabas de hacer una operación similar hace un momento. Debes esperar al menos 30 segundos para hacer una nueva.";
       yield openNotification("error", message);
-    }
+    } else yield openNotification("error", message);
 
     yield put(actions.createExchangeError());
   }

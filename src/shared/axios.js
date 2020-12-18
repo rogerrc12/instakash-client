@@ -4,7 +4,7 @@ const baseURL = process.env.NODE_ENV !== "production" ? "https://api-test.instak
 
 const axiosInstance = axios.create({
   baseURL,
-  timeout: 5000,
+  timeout: 20000,
 });
 
 const requestLog = (config) => (process.env.NODE_ENV !== "production" ? console.log(`Request sent to ${config.url}`) : false);
