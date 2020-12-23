@@ -103,7 +103,10 @@ function* registerUser(action) {
   } catch (error) {
     let message = "Ha ocurrido un error durante el registro. Por favor intenta nuevamente. Si el problema persiste contacta a soporte.";
 
-    if (error.status === 404) message = "Al parecer el RUC no existe o no es válido con la razón social. Por favor, verifique que ambas son válidas e intente de nuevo.";
+    if (error.status === 404) {
+      const documentMessage = userData.RUCNumber ? "Al parecer el RUC no existe o no es válido con la razón social." : "Al parecer el DNI no es válido o no existe.";
+      message = `${documentMessage} Por favor, verifique los datos e intente de nuevo.`;
+    }
 
     yield openNotification("error", message);
 
@@ -207,16 +210,15 @@ function* validatePasswordChange(action) {
 function* changePassword(action) {
   let { password, userId } = action;
 
-  if (!userId) {
-    userId = yield call(getUserId);
-  }
+  if (!userId) userId = yield call(getUserId);
 
   try {
     yield axios.post(`/Usuario/CambiarPass?id=${userId}&Pass=${password}`, {
       headers: { "Content-Type": "application/json" },
     });
     yield put(actions.changePassword());
-    swal("Exitoso!", "Contraseña cambiada correctamente, ya puedes iniciar sesión.", "success");
+    swal("Exitoso!", "Contraseña cambiada correctamente.", "success");
+    yield delay(2000);
     return history.push("/login");
   } catch (error) {
     yield put(actions.changePasswordFail());

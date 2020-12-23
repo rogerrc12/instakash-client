@@ -13,9 +13,9 @@ const Step2 = (props) => {
 
   const isLoading = useSelector((state) => state.cashAdvance.isLoading);
 
-  const checkBalanceHandler = () => {
-    props.checkBalance(values, props.goNext, "avance");
-  };
+  // const checkBalanceHandler = () => {
+  //   props.checkBalance(values, props.goNext, "avance");
+  // };
 
   let provinceAccount;
 
@@ -51,12 +51,7 @@ const Step2 = (props) => {
         <Button click={props.goBack} className={classes.PrevButton} type='button'>
           Volver
         </Button>
-        <Button
-          click={checkBalanceHandler}
-          type='button'
-          disabled={!values.accountToReceive || isLoading}
-          className={`ld-over ${isLoading ? "running" : ""}`}
-        >
+        <Button click={() => props.goNext()} type='button' disabled={!values.accountToReceive || isLoading} className={`ld-over ${isLoading ? "running" : ""}`}>
           <span className='ld ld-ring ld-spin text-base' />
           Continuar
         </Button>

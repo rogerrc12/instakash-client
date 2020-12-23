@@ -64,6 +64,11 @@ const CurrencyExchange = (props) => {
             <p>
               <strong>* Montos mayores a USD $5,000 pueden demorar más de lo usual.</strong>
             </p>
+            <p>
+              <strong>
+                *Toda solicitud que ingrese fuera de nuestro horario laboral <br /> será atendida al siguiente dia útil. SIN EXCEPCIÓN.
+              </strong>
+            </p>
           </div>
         </div>
       </main>

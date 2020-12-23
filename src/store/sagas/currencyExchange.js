@@ -115,7 +115,7 @@ function* processExchange(action) {
 }
 
 function* cancelExchange(action) {
-  const { id } = action;
+  const { id, connection } = action;
 
   try {
     const result = yield sweetalert({
@@ -131,7 +131,7 @@ function* cancelExchange(action) {
 
       if (res.status === 200) {
         yield history.push("/actividad");
-
+        if (connection.connectionStarted) yield connection.invoke("CambioStatusCD");
         yield openNotification("success", "Solicitud cancelada correctamente.");
 
         yield put(actions.cancelExchange());

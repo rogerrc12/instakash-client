@@ -47,9 +47,10 @@ export const processExchangeError = () => ({
   type: actionTypes.PROCESS_EXCHANGE_FAILED,
 });
 
-export const cancelExchangeInit = (id) => ({
+export const cancelExchangeInit = (id, connection) => ({
   type: actionTypes.CANCEL_EXCHANGE_INIT,
   id,
+  connection,
 });
 
 export const cancelExchange = () => ({

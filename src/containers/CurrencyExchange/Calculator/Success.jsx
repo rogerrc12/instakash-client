@@ -25,7 +25,7 @@ const Success = (props) => {
     props.processExchange(newExchange.idPayment, transferNumber, props.goStep, props.connection);
   };
 
-  const cancelExchangeHandler = () => props.cancelExchange(newExchange.idPayment);
+  const cancelExchangeHandler = () => props.cancelExchange(newExchange.idPayment, props.connection);
 
   return (
     <>
@@ -103,7 +103,7 @@ const Success = (props) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     processExchange: (id, transferNumber, goStep, connection) => dispatch(actions.processExchangeInit(id, transferNumber, goStep, connection)),
-    cancelExchange: (id) => dispatch(actions.cancelExchangeInit(id)),
+    cancelExchange: (id, connection) => dispatch(actions.cancelExchangeInit(id, connection)),
   };
 };
 
