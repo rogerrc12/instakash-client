@@ -1,18 +1,16 @@
-import { takeLatest, all, put, select, call } from "redux-saga/effects";
+import { takeLatest, all, put, select } from "redux-saga/effects";
 import * as actions from "../actions/activity";
 import * as actionTypes from "../actionTypes";
-import * as utilities from "./utility";
 import axios from "../../shared/axios";
 import { openNotification } from "../../shared/antd";
 import moment from "moment-timezone";
 
 export function* getActivity() {
-  const userId = yield call(utilities.getUserId);
   let currencyExchanges = [];
   let cashAdvances = [];
 
   try {
-    const res = yield axios.get(`/Actividad/Actividades?IdUsuario=${userId}`);
+    const res = yield axios.get(`/Actividad/Actividades`);
 
     const { cambiosDeDivisas, avancesDeEfectivo } = res.data;
 

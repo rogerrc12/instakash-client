@@ -7,6 +7,7 @@ import activity from "./activity";
 import auth from "./auth";
 import currencyExchange from "./currencyExchange";
 import cashAdvance from "./cashAdvance";
+import Data from "./data";
 
 const appReducer = combineReducers({
   registration,
@@ -16,6 +17,7 @@ const appReducer = combineReducers({
   activity,
   currencyExchange,
   cashAdvance,
+  Data,
 });
 
 const rootReducer = (state, action) => {

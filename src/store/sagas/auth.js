@@ -21,9 +21,9 @@ function onAuthStateChanged(id) {
 function* onLoginUser(data) {
   const { token, idUser, expires } = data;
   const expTime = yield new Date(expires);
-  yield call([localStorage, "setItem"], "idToken", token);
-  yield call([localStorage, "setItem"], "userId", idUser);
-  yield call([localStorage, "setItem"], "expTime", expTime);
+
+  const userObj = { accessToken: token, userId: idUser, tokenExp: expTime };
+  yield call([localStorage, "setItem"], "authUser", JSON.stringify(userObj));
   yield put(actions.loginUser(token));
   yield call(loadUser);
 }
@@ -34,14 +34,14 @@ function* checkAuthTimeout(action) {
 }
 
 function* loadUser() {
-  const token = yield call([localStorage, "getItem"], "idToken");
+  const authUser = yield call([localStorage, "getItem"], "authUser");
 
-  if (token) {
-    const expTime = yield new Date(localStorage.getItem("expTime"));
-    if (expTime <= new Date()) {
-      yield call(logout);
-    } else {
-      const userId = yield call([localStorage, "getItem"], "userId");
+  if (authUser) {
+    const { userId, accessToken, tokenExp } = JSON.parse(authUser);
+    const expTime = new Date(tokenExp);
+
+    if (accessToken) {
+      if (expTime <= new Date()) return yield call(logout);
 
       try {
         const userData = yield call(onAuthStateChanged, userId);
@@ -63,10 +63,8 @@ function* loadUser() {
       } catch (error) {
         yield put(actions.loadUserFail());
       }
-    }
-  } else {
-    yield put(actions.loadUserFail());
-  }
+    } else yield put(actions.loadUserFail());
+  } else yield put(actions.loadUserFail());
 }
 
 function* registerUser(action) {
@@ -145,7 +143,7 @@ function* loginUser(action) {
   try {
     const res = yield axios.post("/Usuario/Login", body, { headers: { "Content-type": "application/json" } });
 
-    yield call(() => onLoginUser(res.data));
+    yield call(onLoginUser, res.data);
   } catch (error) {
     yield openNotification(
       "error",
@@ -160,19 +158,16 @@ function* loginUser(action) {
 }
 
 export function* logout() {
-  const userId = yield call([localStorage, "getItem"], "userId");
-
   try {
-    yield axios.get(`/Usuario/Logout?Id=${userId}`);
+    yield axios.get(`/Usuario/Logout`);
   } catch (error) {
     console.log(error);
   }
 
   yield put(actions.logout());
   yield history.push("/login");
-  yield call([localStorage, "removeItem"], "idToken");
-  yield call([localStorage, "removeItem"], "userId");
-  yield call([localStorage, "removeItem"], "expTime");
+  yield call([localStorage, "removeItem"], "authUser");
+
   yield put(registrationActions.getBanksInit());
   yield put(registrationActions.getDocumentsInit());
   yield put(registrationActions.getCurrenciesInit());

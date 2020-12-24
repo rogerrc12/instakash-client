@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = process.env.NODE_ENV === "production" ? "https://api-test.instakash.net/api" : "https://api-prod.instakash.net/api";
+const baseURL = process.env.NODE_ENV !== "production" ? "https://api-test.instakash.net/api" : "https://api-prod.instakash.net/api";
 
 const axiosInstance = axios.create({
   baseURL,
@@ -11,6 +11,11 @@ const requestLog = (config) => (process.env.NODE_ENV !== "production" ? console.
 
 axiosInstance.interceptors.request.use(
   (config) => {
+    const authUser = localStorage.getItem("authUser");
+    let accessToken;
+    if (authUser) accessToken = JSON.parse(authUser).accessToken;
+
+    config.headers.Authorization = accessToken ? accessToken : "";
     requestLog(config);
     return config;
   },

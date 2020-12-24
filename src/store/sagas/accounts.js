@@ -26,12 +26,11 @@ function* newAccountValues(values) {
 }
 
 function* getAccounts() {
-  const userId = yield call(utils.getUserId);
   let personalAccounts = [];
   let thirdAccounts = [];
 
   try {
-    const res = yield axios.get(`/CuentaBanco/ObternerCuentaBancos?IdUsuario=${userId}`);
+    const res = yield axios.get(`/CuentaBanco/ObternerCuentaBancos`);
 
     if (res.data.length > 0) {
       personalAccounts = res.data
@@ -67,10 +66,7 @@ function* getAccounts() {
 
     yield put(accountActions.getAccounts(personalAccounts, thirdAccounts));
   } catch (error) {
-    yield openNotification(
-      "error",
-      "Ha ocurrido un error obteniendo tus cuentas, por favor intenta más tarde. Si el problema persiste contacta a soporte."
-    );
+    yield openNotification("error", "Ha ocurrido un error obteniendo tus cuentas, por favor intenta más tarde. Si el problema persiste contacta a soporte.");
   }
 }
 
@@ -99,10 +95,7 @@ function* getAccountDetails(action) {
 
     yield put(accountActions.getAccountDetails(accDetails));
   } catch (error) {
-    yield openNotification(
-      "error",
-      "Ha ocurrido un error obteniendo el detalle de tu cuenta. Por favor, contacta a soporte si el problema persiste."
-    );
+    yield openNotification("error", "Ha ocurrido un error obteniendo el detalle de tu cuenta. Por favor, contacta a soporte si el problema persiste.");
     yield put(accountActions.getAccountDetailsError());
     yield put(modalActions.closeModal());
   }
@@ -125,9 +118,7 @@ function* addAccount(action) {
   } catch (error) {
     yield openNotification(
       "error",
-      error.status === 404
-        ? "La cuenta que deseas agregar ya está registrada en este perfil."
-        : "ha ocurrido un error al agregar la cuenta. Por favor, intenta más tarde."
+      error.status === 404 ? "La cuenta que deseas agregar ya está registrada en este perfil." : "ha ocurrido un error al agregar la cuenta. Por favor, intenta más tarde."
     );
     yield put(modalActions.closeModal());
     yield put(accountActions.addAccountError());
@@ -136,7 +127,7 @@ function* addAccount(action) {
 
 function* editAccount(action) {
   const { id, values } = action;
-  const accountValues = yield call(() => newAccountValues(values));
+  const accountValues = yield call(newAccountValues, values);
   accountValues.idBankAccount = +id;
 
   const body = JSON.stringify(accountValues);
