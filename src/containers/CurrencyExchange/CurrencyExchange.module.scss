@@ -336,3 +336,22 @@ small.Warning {
   text-align: right;
   display: block;
 }
+
+.PricesUpdate {
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.UpdateTime {
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+
+  svg {
+    display: inline-block;
+    margin-right: 5px;
+  }
+}

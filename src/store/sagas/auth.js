@@ -6,13 +6,12 @@ import * as registrationActions from "../actions/registration";
 import * as modalActions from "../actions/modal";
 import axios from "../../shared/axios";
 import swal from "sweetalert";
-import { getUserId } from "./utility";
 import { openNotification } from "../../shared/antd";
 
-function onAuthStateChanged(id) {
+function onAuthStateChanged() {
   return new Promise((resolve, reject) => {
     axios
-      .get(`/Usuario/ObtenerUsuario?Id=${id}`)
+      .get(`/Usuario/ObtenerUsuario`)
       .then((res) => resolve(res.data))
       .catch((error) => reject(error));
   });
@@ -37,14 +36,14 @@ function* loadUser() {
   const authUser = yield call([localStorage, "getItem"], "authUser");
 
   if (authUser) {
-    const { userId, accessToken, tokenExp } = JSON.parse(authUser);
+    const { accessToken, tokenExp } = JSON.parse(authUser);
     const expTime = new Date(tokenExp);
 
     if (accessToken) {
       if (expTime <= new Date()) return yield call(logout);
 
       try {
-        const userData = yield call(onAuthStateChanged, userId);
+        const userData = yield call(onAuthStateChanged);
 
         const user = {
           name: userData.firstName + " " + userData.lastName,
@@ -205,7 +204,7 @@ function* validatePasswordChange(action) {
 function* changePassword(action) {
   let { password, userId } = action;
 
-  if (!userId) userId = yield call(getUserId);
+  if (!userId) userId = yield call([localStorage, "getItem"], "userId");
 
   try {
     yield axios.post(`/Usuario/CambiarPass?id=${userId}&Pass=${password}`, {
@@ -222,10 +221,8 @@ function* changePassword(action) {
 }
 
 function* changePhoneNumber(action) {
-  const userId = yield call(getUserId);
-
   try {
-    const res = yield axios.post(`Usuario/ActualizarTelefono?IdUsuario=${userId}&Telefono=${action.phoneNumber}`);
+    const res = yield axios.post(`Usuario/ActualizarTelefono?Telefono=${action.phoneNumber}`);
 
     if (res.status === 200) {
       yield openNotification("success", "Número agregado correctamente!. Ya puedes realizar tus operaciones.");
@@ -240,10 +237,8 @@ function* changePhoneNumber(action) {
 }
 
 function* changeAddress(action) {
-  const userId = yield call(getUserId);
-
   try {
-    const res = yield axios.post(`/Usuario/ActualizarDireccion?Id=${userId}&Direccion=${action.address}`);
+    const res = yield axios.post(`/Usuario/ActualizarDireccion?Direccion=${action.address}`);
 
     if (res.status === 200) {
       yield openNotification("success", "Dirección agregada correctamente!. Ya puedes realizar tus operaciones.");
@@ -258,10 +253,7 @@ function* changeAddress(action) {
 }
 
 function* updateProfile(action) {
-  const userId = yield call(getUserId);
-
   const body = JSON.stringify({
-    Id: +userId,
     DateBirth: new Date(action.values.DateBirth),
     Address: action.values.Address + ", " + action.values.District + ", " + action.values.Province,
     Deparment: action.values.Deparment,

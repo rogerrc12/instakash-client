@@ -3,6 +3,7 @@ import { useSelector, connect } from "react-redux";
 import * as actions from "../../../store/actions";
 import { Field } from "formik";
 import { TiWarning } from "react-icons/ti";
+import { FiClock } from "react-icons/fi";
 import { formatPrice } from "../../../shared/utils";
 
 import Button from "../../../components/UI/Button";
@@ -55,6 +56,12 @@ const Step1 = (props) => {
         Ahorra <br /> <b>Cambiando Dolares</b>
       </h2>
       {prices}
+      <div className={classes.PricesUpdate}>
+        <span>Se actualizará el tipo de cambio en:</span>
+        <span className={classes.UpdateTime}>
+          <FiClock /> 5:00
+        </span>
+      </div>
       <div className='relative'>
         <Input label='Envias' name='sending' {...props} disabled={!selling && !buying} />
         <Field

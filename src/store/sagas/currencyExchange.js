@@ -3,7 +3,6 @@ import { openNotification } from "../../shared/antd";
 import * as actions from "../actions/currencyExchange";
 import * as modalActions from "../actions/modal";
 import * as activityActions from "../actions/activity";
-import * as utilSagas from "./utility";
 import * as actionTypes from "../actionTypes";
 import axios from "../../shared/axios";
 import sweetalert from "sweetalert";
@@ -26,8 +25,6 @@ function* getPrices() {
 }
 
 function* createExchange(action) {
-  const userId = yield call(utilSagas.getUserId);
-
   const { connection } = action;
   const { sending, receiving } = action.values;
 
@@ -35,7 +32,6 @@ function* createExchange(action) {
     IdBankAccount: action.values.bankToReceive,
     amountSell: sending,
     amountReceive: receiving,
-    UserId: userId,
     PaymentDate: new Date(),
     IdExchangeType: action.values.idCurrencyToSend,
     IdExchangeTo: action.values.idCurrencyToReceive,

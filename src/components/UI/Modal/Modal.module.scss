@@ -37,3 +37,80 @@
   color: #fff;
   z-index: 100;
 }
+
+.ScheduleModal {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 100vh;
+  padding: 0 !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0;
+  margin: 0 !important;
+
+  .ModalWrapper {
+    width: 100%;
+    height: 100%;
+    background: rgb(2, 128, 144);
+    background: linear-gradient(340deg, rgba(2, 128, 144, 1) 0%, rgba(0, 173, 151, 1) 55%, rgba(2, 195, 154, 1) 100%);
+    display: grid;
+    align-items: center;
+  }
+}
+
+.ModalContent {
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  max-width: 45rem;
+  margin: 0 auto;
+
+  img {
+    color: #fff;
+    max-width: 7rem;
+    margin-bottom: 20px;
+  }
+
+  h4 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 20px;
+  }
+
+  p {
+    margin-bottom: 30px;
+  }
+
+  button {
+    background-color: $base-green;
+    box-shadow: 3px 2px 10px rgba(0, 173, 151, 0.4);
+    font-weight: bold;
+  }
+
+  @media #{$min-desktop} {
+    img {
+      max-width: 10rem;
+      margin-bottom: 30px;
+    }
+
+    h4 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+    }
+
+    p {
+      font-size: 1rem;
+      margin-bottom: 50px;
+    }
+
+    button {
+      font-size: 1rem;
+    }
+  }
+}

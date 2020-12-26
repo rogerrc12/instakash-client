@@ -1,4 +1,4 @@
-import * as actionTypes from '../actionTypes';
+import * as actionTypes from "../actionTypes";
 
 export const setAuthComponent = (component) => ({
   type: actionTypes.SET_AUTH_COMPONENT,

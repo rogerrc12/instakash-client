@@ -5,7 +5,6 @@ import * as actionTypes from "../actionTypes";
 import * as modalActions from "../actions/modal";
 import * as activityActions from "../actions/activity";
 import * as advanceActions from "../actions/cashAdvance";
-import * as utilSagas from "./utility";
 import sweetalert from "sweetalert";
 import history from "../../shared/history";
 
@@ -19,13 +18,11 @@ function* getLimits() {
 
     yield put(advanceActions.getLimits(res.data.tarifa, limits));
   } catch (error) {
-    console.log(error);
     yield put(advanceActions.getLimitsFail());
   }
 }
 
 function* createAdvance(action) {
-  const userId = yield call(utilSagas.getUserId);
   const { connection } = action;
 
   const newAdvance = {
@@ -33,7 +30,6 @@ function* createAdvance(action) {
     IdPayingBank: action.values.IdPayingBank,
     amountSell: action.values.amountToPay,
     amountReceive: action.values.amountToReceive,
-    IdUser: userId,
     IdCurrencyType: action.values.idCurrencyToReceive,
   };
 
@@ -133,11 +129,10 @@ function* cancelAdvance(action) {
 }
 
 function* validateUserLimit(action) {
-  const userId = yield call(utilSagas.getUserId);
   const { values } = action;
 
   try {
-    const res = yield axios.get(`/AvanceEfectivo/ValidarLimite?IdMoneda=${values.IdMoneda}&Monto=${values.Monto}&IdUsuario=${userId}`);
+    const res = yield axios.get(`/AvanceEfectivo/ValidarLimite?IdMoneda=${values.IdMoneda}&Monto=${values.Monto}`);
 
     if (res.status === 200) action.goNext(1);
     yield put(advanceActions.validateLimit());

@@ -5,7 +5,6 @@ import { Route } from "react-router-dom";
 import { RiQuestionLine } from "react-icons/ri";
 import AsyncComponent from "../../hoc/asyncComponent";
 import * as signalR from "@microsoft/signalr";
-import moment from "moment";
 
 import Header from "../../components/layout/Header";
 import Navigation from "../../components/Navigation";
@@ -31,28 +30,18 @@ const MainApp = (props) => {
   const user = useSelector((state) => state.auth.user);
   const { schedule } = useSelector((state) => state.Data);
 
-  if (schedule.length > 0) {
-    schedule.forEach((day) => {
-      const actualDay = new Date().getDay();
-      if (day.idDayOfWeek === actualDay) {
-        if (!day.isWorkday) return console.log("No es dia laboral.");
-
-        const actualTime = moment(new Date(), "HH:mm");
-        const startTime = moment(day.startTime, "HH:mm");
-        const endTime = moment(day.endTime, "HH:mm");
-
-        if (!actualTime.isAfter(startTime) || !actualTime.isBefore(endTime)) return console.log("Fuera del horario de trabajo");
-      }
-    });
-  }
-
   const openNav = () => setOpenedNav(true);
   const closeNav = () => setOpenedNav(false);
 
   useEffect(() => {
     getAccounts();
-    getSchedule();
-  }, [getAccounts, getSchedule]);
+  }, [getAccounts]);
+
+  useEffect(() => {
+    if (schedule.length <= 0) {
+      getSchedule();
+    }
+  }, [schedule, getSchedule]);
 
   useEffect(() => {
     let hubConnection = new signalR.HubConnectionBuilder()
@@ -78,21 +67,23 @@ const MainApp = (props) => {
   }, [connection]);
 
   return (
-    <div className={classes.App}>
-      <Header location={props.location.pathname} user={user} openHandler={openNav} />
-      <Navigation opened={openedNav} closeHandler={closeNav} />
-      <Route exact path='/' component={Welcome} />
-      <Route path={props.match.url + "actividad"} component={AsyncComponent(Dashboard, connection)} />
-      <Route path={props.match.url + "cambio-de-divisas"} component={AsyncComponent(CurrencyExchange, connection)} />
-      <Route path={props.match.url + "avance-de-efectivo"} component={AsyncComponent(CashAdvance, connection)} />
-      <Route path={props.match.url + "mis-cuentas"} component={AsyncComponent(Accounts)} />
-      <Route path={props.match.url + "mi-perfil"} component={AsyncComponent(Profile)} />
-      <FooterNav />
+    <>
+      <div className={classes.App}>
+        <Header location={props.location.pathname} user={user} openHandler={openNav} />
+        <Navigation opened={openedNav} closeHandler={closeNav} />
+        <Route exact path='/' component={Welcome} />
+        <Route path={props.match.url + "actividad"} component={AsyncComponent(Dashboard, connection)} />
+        <Route path={props.match.url + "cambio-de-divisas"} component={AsyncComponent(CurrencyExchange, connection)} />
+        <Route path={props.match.url + "avance-de-efectivo"} component={AsyncComponent(CashAdvance, connection)} />
+        <Route path={props.match.url + "mis-cuentas"} component={AsyncComponent(Accounts)} />
+        <Route path={props.match.url + "mi-perfil"} component={AsyncComponent(Profile)} />
+        <FooterNav />
 
-      <QuestionsButton icon={RiQuestionLine} className={classes.Question} click={props.openModal} />
+        <QuestionsButton icon={RiQuestionLine} className={classes.Question} click={props.openModal} />
 
-      <QuestionsModal />
-    </div>
+        <QuestionsModal />
+      </div>
+    </>
   );
 };
 

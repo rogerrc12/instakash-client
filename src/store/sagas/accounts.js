@@ -2,17 +2,14 @@ import { takeLatest, all, put, call, delay } from "redux-saga/effects";
 import * as actionTypes from "../actionTypes";
 import * as accountActions from "../actions/accounts";
 import * as modalActions from "../actions/modal";
-import * as utils from "./utility";
 import axios from "../../shared/axios";
 import { openNotification } from "../../shared/antd";
 import swal from "sweetalert";
 
-function* newAccountValues(values) {
-  const userId = yield call(utils.getUserId);
+function newAccountValues(values) {
   const newAccount = values;
   newAccount.idBankAccountType = +values.idBankAccountType;
   newAccount.idCurrencyType = +values.idCurrencyType;
-  newAccount.idUser = +userId;
 
   if (values.isThird) {
     newAccount.idDocumentTypeThird = +values.idDocumentTypeThird;
@@ -102,7 +99,7 @@ function* getAccountDetails(action) {
 }
 
 function* addAccount(action) {
-  const accountValues = yield call(() => newAccountValues(action.values));
+  const accountValues = yield call(newAccountValues, action.values);
 
   const body = JSON.stringify(accountValues);
 

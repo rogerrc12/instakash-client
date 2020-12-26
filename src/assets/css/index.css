@@ -241,3 +241,14 @@ tr.ant-table-row.ant-table-row-level-0 {
 .alert-msg {
   color: #f0ad4e;
 }
+
+/* ANT MODAL */
+.ant-modal-content,
+.ant-modal-body {
+  height: 100%;
+  padding: 0;
+}
+
+.ant-modal-close {
+  color: #fff;
+}
