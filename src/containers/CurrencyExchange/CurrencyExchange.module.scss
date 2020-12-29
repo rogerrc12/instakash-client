@@ -175,20 +175,6 @@
     border: 1px solid transparent;
     text-align: center;
 
-    &:first-of-type:not(.LastButton) {
-      background-color: transparent;
-      color: $base-green;
-      border-color: $base-green;
-      margin-left: 0;
-
-      &:hover,
-      &:focus,
-      &:active {
-        color: #fff;
-        background-color: $base-green;
-      }
-    }
-
     &:hover,
     &:focus,
     &:active {
@@ -209,6 +195,21 @@
     button {
       flex: 0.4;
     }
+  }
+}
+
+.CancelButton {
+  background-color: transparent;
+  color: $base-green;
+  border: 1px solid $base-green;
+  margin-top: 15px;
+  width: 100%;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: #fff;
+    background-color: $base-green;
   }
 }
 

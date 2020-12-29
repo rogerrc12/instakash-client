@@ -17,7 +17,7 @@ import classes from "../CurrencyExchange.module.scss";
 const Calculator = (props) => {
   const { prices, connection } = props;
 
-  const { accounts, step, goNext, goBack, goStep, logout, newExchange, setModalType, exchangeRateId } = props;
+  const { accounts, step, goNext, goBack, goStep, getPrices, logout, newExchange, setModalType, exchangeRateId } = props;
   const formRef = useRef();
 
   const currencies = useSelector((state) => state.registration.currencies);
@@ -65,7 +65,16 @@ const Calculator = (props) => {
   };
 
   const steps = (values, valid, errors) => [
-    <Step1 next={goNext} prices={prices} changeAmount={changeAmountHandler} changeCondition={changeConditionHandler} {...values} errors={errors} setModal={setModalType} />,
+    <Step1
+      getPrices={getPrices}
+      next={goNext}
+      prices={prices}
+      changeAmount={changeAmountHandler}
+      changeCondition={changeConditionHandler}
+      {...values}
+      errors={errors}
+      setModal={setModalType}
+    />,
     <Step2 prev={goBack} next={goNext} {...values} />,
     <Step3 accounts={accounts} prev={goBack} valid={valid} next={goNext} {...values} setModal={setModalType} />,
     <Success goStep={goStep} connection={connection} {...values} />,
@@ -74,18 +83,12 @@ const Calculator = (props) => {
   useEffect(() => {
     let timer;
 
-    if (step < 3) {
-      timer = setTimeout(() => logout(), 300000);
-    }
+    if (step > 0 && step < 3) timer = setTimeout(() => logout(), 300000);
 
-    return () => {
-      clearTimeout(timer);
-    };
+    return () => clearTimeout(timer);
   }, [newExchange, goStep, step, logout]);
 
-  const onSubmit = (values) => {
-    props.createExchange(values, goStep, connection);
-  };
+  const onSubmit = (values) => props.createExchange(values, goStep, connection);
 
   return (
     <div className={`${classes.Calculator} ${step === 3 && !isMobile ? "ml-6" : ""}`}>

@@ -5,6 +5,7 @@ import { Field } from "formik";
 import { TiWarning } from "react-icons/ti";
 import { FiClock } from "react-icons/fi";
 import { formatPrice } from "../../../shared/utils";
+import moment from "moment-timezone";
 
 import Button from "../../../components/UI/Button";
 import Input from "../../../components/UI/Calculator/Input";
@@ -12,6 +13,7 @@ import Swipe from "../../../components/UI/Calculator/Swipe";
 import Limits from "../../../components/UI/Calculator/Limits";
 import Price from "../../../components/UI/Calculator/Price";
 import Spinner from "../../../components/UI/Spinner";
+import Timer from "../../../components/UI/Timer";
 
 import classes from "../CurrencyExchange.module.scss";
 
@@ -26,12 +28,8 @@ const Step1 = (props) => {
       if (!user.birthday) {
         props.setModal("profile");
         props.openModal();
-      } else {
-        props.next();
-      }
-    } else {
-      props.next();
-    }
+      } else props.next();
+    } else props.next();
   };
 
   const changeCurrencies = (condition, setField) => {
@@ -59,7 +57,7 @@ const Step1 = (props) => {
       <div className={classes.PricesUpdate}>
         <span>Se actualizará el tipo de cambio en:</span>
         <span className={classes.UpdateTime}>
-          <FiClock /> 5:00
+          <FiClock /> <Timer timeTillDate={moment().add(5, "minutes")} onFinish={props.getPrices} />
         </span>
       </div>
       <div className='relative'>
@@ -79,7 +77,7 @@ const Step1 = (props) => {
             ¿Monto mayor a <strong>$5.000</strong> o <strong>S/.15.000</strong>?
           </p>
         </Limits>
-        <Button type='button' click={checkAmountHandler} disabled={props.sending < 30 || !!props.errors.receiving || (!selling && !buying)} className={classes.FirstButton}>
+        <Button type='button' click={checkAmountHandler} disabled={props.sending < 1 || (!selling && !buying)} className={classes.FirstButton}>
           Continuar
         </Button>
       </div>

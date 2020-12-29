@@ -3,7 +3,6 @@ import { AiOutlineInfoCircle } from "react-icons/ai";
 import { Tooltip } from "antd";
 import * as actions from "../../../store/actions";
 import { useSelector, connect } from "react-redux";
-import { Link } from "react-router-dom";
 
 import Button from "../../../components/UI/Button";
 import CopyButton from "../../../components/UI/CopyButton";
@@ -88,14 +87,15 @@ const Success = (props) => {
       <p className='text-sm'>
         <strong>IMPORTANTE: </strong> Solo dispone de <strong>15 minutos</strong> para colocar su nro. de transferencia.
       </p>
-      <div className={classes.ActionWrapper}>
-        <Button type='button' click={cancelExchangeHandler}>
-          Cancelar
-        </Button>
-        <Link to='/actividad' className={classes.LastButton}>
+      <Button type='button' click={cancelExchangeHandler} className={classes.CancelButton}>
+        Cancelar
+      </Button>
+      {/* <div className={classes.ActionWrapper}>
+
+        {/* <Link to='/actividad' className={classes.LastButton}>
           Ir al inicio
         </Link>
-      </div>
+      </div> */}
     </>
   );
 };

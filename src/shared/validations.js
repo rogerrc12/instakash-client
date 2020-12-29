@@ -110,7 +110,7 @@ export const validatePasswordChange = Yup.object().shape({
 });
 
 export const validateCurrencyExchange = Yup.object().shape({
-  sending: Yup.number().min(30, "El monto mínimo aceptado es de 30 dolares."),
+  sending: Yup.number().required("Debes colocar un monto a enviar"),
   accountToReceive: Yup.string().required("Debes seleccionar una de tus cuentas."),
   bankToSend: Yup.string().required("Debes seleccionar un banco."),
   originFunds: Yup.string().when(["sending", "idCurrencyToSend"], {

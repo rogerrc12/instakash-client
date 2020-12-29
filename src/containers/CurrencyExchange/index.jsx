@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, connect } from "react-redux";
 import { Redirect } from "react-router-dom";
+import { isMobile } from "react-device-detect";
 import * as actions from "../../store/actions";
 
 import Steps from "../../components/UI/Steps";
@@ -42,6 +43,7 @@ const CurrencyExchange = (props) => {
               goNext={setNextStep}
               goBack={setPrevStep}
               goStep={goStepHandler}
+              getPrices={getPrices}
               prices={prices}
               limits={limits}
               newExchange={newExchange}
@@ -52,24 +54,26 @@ const CurrencyExchange = (props) => {
               connection={connection}
             />
           </div>
-          <div className={classes.InfoSection}>
-            <h4>Tiempo Estimado</h4>
-            <p>- De 15 a 25 minutos</p>
-            <p className='mt-4'>
-              <strong>* Solo operaciones con BCP e Interbank.</strong>
-            </p>
-            <p>
-              <strong>* Solo transferencias bancarias (no depósitos).</strong>
-            </p>
-            <p>
-              <strong>* Montos mayores a USD $5,000 pueden demorar más de lo usual.</strong>
-            </p>
-            <p>
-              <strong>
-                *Toda solicitud que ingrese fuera de nuestro horario laboral <br /> será atendida al siguiente dia útil. SIN EXCEPCIÓN.
-              </strong>
-            </p>
-          </div>
+          {step === 0 || !isMobile ? (
+            <div className={classes.InfoSection}>
+              <h4>Tiempo Estimado</h4>
+              <p>- De 15 a 25 minutos</p>
+              <p className='mt-4'>
+                <strong>* Solo operaciones con BCP e Interbank.</strong>
+              </p>
+              <p>
+                <strong>* Solo transferencias bancarias (no depósitos).</strong>
+              </p>
+              <p>
+                <strong>* Montos mayores a USD $5,000 pueden demorar más de lo usual.</strong>
+              </p>
+              <p>
+                <strong>
+                  *Toda solicitud que ingrese fuera de nuestro horario laboral <br /> será atendida al siguiente dia útil. SIN EXCEPCIÓN.
+                </strong>
+              </p>
+            </div>
+          ) : null}
         </div>
       </main>
       <Modal animationClassName='slide-up-down'>
