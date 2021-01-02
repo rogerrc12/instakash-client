@@ -5,7 +5,6 @@ import * as actions from "./store/actions";
 import { connect } from "react-redux";
 import { Router, Switch, Route } from "react-router-dom";
 import PrivateRoute from "./components/routing/PrivateRoute";
-import moment from "moment";
 
 import Auth from "./containers/Auth";
 import ChangePassword from "./containers/Auth/ChangePassword";
@@ -19,7 +18,7 @@ import "ldbutton/dist/ldbtn.min.css";
 function App(props) {
   const [visible, setVisible] = useState(false);
 
-  const { loadUser, getQuestions, getDocuments, getCurrencies, getBanks, schedule } = props;
+  const { loadUser, getQuestions, getDocuments, getCurrencies, getBanks } = props;
 
   useEffect(() => {
     getQuestions();
@@ -37,23 +36,6 @@ function App(props) {
     ReactGA.pageview(window.location.pathname + window.location.search);
   }, []);
 
-  useEffect(() => {
-    if (schedule.length > 0) {
-      schedule.forEach((day) => {
-        const actualDay = new Date().getDay();
-        if (day.idDayOfWeek === actualDay) {
-          if (!day.isWorkday) return setTimeout(() => setVisible(true), 600);
-
-          const actualTime = moment(new Date(), "HH:mm");
-          const startTime = moment(day.startTime, "HH:mm");
-          const endTime = moment(day.endTime, "HH:mm");
-
-          if (!actualTime.isAfter(startTime) || !actualTime.isBefore(endTime)) return setTimeout(() => setVisible(true), 600);
-        }
-      });
-    }
-  }, [schedule]);
-
   const closeModal = () => {
     setVisible(false);
     sessionStorage.setItem("modalRead", true);
@@ -64,17 +46,13 @@ function App(props) {
       <Switch>
         <Route exact path='/login' component={Auth} />
         <Route exact path='/change-password' component={ChangePassword} />
-        <PrivateRoute path='/' component={MainApp} />
+        <PrivateRoute path='/' setModal={setVisible} component={MainApp} />
       </Switch>
 
       <ScheduleModal visible={visible} close={closeModal} />
     </Router>
   );
 }
-
-const mapStateToProps = (state) => ({
-  schedule: state.Data.schedule,
-});
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -86,4 +64,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(null, mapDispatchToProps)(App);

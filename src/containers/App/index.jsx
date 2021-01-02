@@ -5,6 +5,7 @@ import { Route } from "react-router-dom";
 import { RiQuestionLine } from "react-icons/ri";
 import AsyncComponent from "../../hoc/asyncComponent";
 import * as signalR from "@microsoft/signalr";
+import moment from "moment";
 
 import Header from "../../components/layout/Header";
 import Navigation from "../../components/Navigation";
@@ -22,7 +23,7 @@ const CurrencyExchange = lazy(() => import("../CurrencyExchange"));
 const CashAdvance = lazy(() => import("../CashAdvance"));
 
 const MainApp = (props) => {
-  const { getAccounts, getSchedule } = props;
+  const { getAccounts, getSchedule, setModal } = props;
 
   const [openedNav, setOpenedNav] = useState(false);
   const [connection, setConnection] = useState(null);
@@ -38,10 +39,25 @@ const MainApp = (props) => {
   }, [getAccounts]);
 
   useEffect(() => {
-    if (schedule.length <= 0) {
-      getSchedule();
+    getSchedule();
+  }, [getSchedule]);
+
+  useEffect(() => {
+    if (schedule && schedule.length > 0) {
+      schedule.forEach((day) => {
+        const actualDay = new Date().getDay();
+        if (day.idDayOfWeek === actualDay) {
+          if (!day.isWorkday) return setTimeout(() => setModal(true), 600);
+
+          const actualTime = moment(new Date(), "HH:mm");
+          const startTime = moment(day.startTime, "HH:mm");
+          const endTime = moment(day.endTime, "HH:mm");
+
+          if (!actualTime.isAfter(startTime) || !actualTime.isBefore(endTime)) return setTimeout(() => setModal(true), 600);
+        }
+      });
     }
-  }, [schedule, getSchedule]);
+  }, [schedule, setModal]);
 
   useEffect(() => {
     let hubConnection = new signalR.HubConnectionBuilder()
@@ -93,4 +109,4 @@ const mapDispatchToProps = (dispatch) => ({
   getSchedule: () => dispatch(actions.getSchedule()),
 });
 
-export default connect(null, mapDispatchToProps)(MainApp);
+export default connect(null, mapDispatchToProps)(React.memo(MainApp));

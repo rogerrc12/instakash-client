@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector, connect } from "react-redux";
 import * as actions from "../../../store/actions";
 import { Field } from "formik";
-import { TiWarning } from "react-icons/ti";
+// import { TiWarning } from "react-icons/ti";
 import { FiClock } from "react-icons/fi";
 import { formatPrice } from "../../../shared/utils";
 import moment from "moment-timezone";
@@ -67,17 +67,22 @@ const Step1 = (props) => {
           component={({ form }) => <Swipe condition={props.condition} disabled={!selling && !buying} change={() => changeCurrencies(props.condition, form.setFieldValue)} />}
         />
         <Input label='Recibes' name='receiving' {...props} disabled={!selling && !buying} />
-        {props.errors.receiving && (
+        {/* {props.errors.receiving && (
           <p className={classes.Warning}>
             <TiWarning /> {props.errors.receiving}
           </p>
-        )}
+        )} */}
         <Limits>
           <p>
             ¿Monto mayor a <strong>$5.000</strong> o <strong>S/.15.000</strong>?
           </p>
         </Limits>
-        <Button type='button' click={checkAmountHandler} disabled={props.sending < 1 || (!selling && !buying)} className={classes.FirstButton}>
+        <Button
+          type='button'
+          click={checkAmountHandler}
+          disabled={(props.sending < 1 && props.idCurrencyToSend === 1) || (props.sending < 4 && props.idCurrencyToSend === 2) || (!selling && !buying)}
+          className={classes.FirstButton}
+        >
           Continuar
         </Button>
       </div>

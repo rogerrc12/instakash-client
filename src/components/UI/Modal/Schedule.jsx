@@ -14,8 +14,13 @@ const Schedule = (props) => {
           <img src={clockImg} alt='tiempo' />
           <h4>¡Ingreso fuera de horario!</h4>
           <p>
-            Está ingresando fuera de nuestro horario laboral. Usted puede realizar sus operaciones y enviar su dinero con normalidad. Pero serán atendidas en la mañana del
-            siguiente día útil.
+            Está ingresando fuera de nuestro horario laboral. Usted puede registrar sus operaciones y transferir con normalidad. Pero su cambio se efectuará dentro de nuestro
+            horario:
+            <br />
+            <br />
+            <strong>LUNES A VIERNES: 9AM a 7PM</strong>
+            <br />
+            <strong>SABADOS Y FERIADOS: 9AM a 3PM</strong>
           </p>
           <Button type='button' click={props.close}>
             Lo entiendo, deseo continuar.

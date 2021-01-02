@@ -1,6 +1,6 @@
 import * as actionTypes from "../actionTypes";
 const initialState = {
-  schedule: [],
+  schedule: null,
   isLoading: true,
 };
 
@@ -11,7 +11,7 @@ export default function (state = initialState, action) {
       return { ...state, schedule: action.data };
 
     case actionTypes.GET_SCHEDULE_FAILED:
-      return { ...state, schedule: [] };
+      return { ...state, schedule: null };
 
     default:
       return state;
